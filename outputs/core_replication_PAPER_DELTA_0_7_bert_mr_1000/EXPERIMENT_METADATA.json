@@ -1,0 +1,13 @@
+{
+  "experiment_tag": "PAPER_STATED_WORD_DELTA_0_7",
+  "purpose": "Controlled comparison with the earlier maintained-recipe delta=0.5 run",
+  "model": "bert-base-uncased-mr",
+  "dataset": "rotten_tomatoes test split selected by the model shortcut",
+  "num_examples": 1000,
+  "random_seed": 8240,
+  "shuffled": true,
+  "max_word_candidates_N": 50,
+  "minimum_word_embedding_cosine_delta": 0.7,
+  "comparison_baseline": "outputs/core_replication_bert_mr_1000 (MAINTAINED_TEXTATTACK_DELTA_0_5)",
+  "changed_from_baseline": "WordEmbeddingDistance min_cos_sim only: 0.5 -> 0.7"
+}

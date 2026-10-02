@@ -1,0 +1,8 @@
+MAINTAINED_TEXTATTACK_DELTA_0_5
+
+Evaluated examples: 1,000.
+
+N = 50 maximum embedding-neighbour candidates per word.
+Word-embedding cosine delta = 0.5, the default setting in TextAttack v0.3.10.
+
+Comparison run: outputs/core_replication_PAPER_DELTA_0_7_bert_mr_1000.

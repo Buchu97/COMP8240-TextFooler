@@ -1,0 +1,13 @@
+--------------------------------------------- Result 1 ---------------------------------------------
+[[Negative (67%)]] --> [[[SKIPPED]]]
+
+if not a home run , then at least a solid base hit .
+Number of successful attacks: 0
+Number of failed attacks: 0
+Number of skipped attacks: 1
+Original accuracy: 0.0%
+Accuracy under attack: 0.0%
+Attack success rate: 0%
+Average perturbed word %: nan%
+Average num. words per input: 12.0
+Avg num queries: nan

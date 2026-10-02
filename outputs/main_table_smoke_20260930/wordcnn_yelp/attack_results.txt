@@ -1,0 +1,13 @@
+--------------------------------------------- Result 1 ---------------------------------------------
+[[1 (75%)]] --> [[[SKIPPED]]]
+
+I had the fish, carnitas, and carne asada tacos. The carne asada tacos were the best, although they didn't taste anything what I expected. They were kind of sweet. What really makes the tacos are the homemade tortillas which are fresh and perfect.\nChips were cold and not good at all.
+Number of successful attacks: 0
+Number of failed attacks: 0
+Number of skipped attacks: 1
+Original accuracy: 0.0%
+Accuracy under attack: 0.0%
+Attack success rate: 0%
+Average perturbed word %: nan%
+Average num. words per input: 51.0
+Avg num queries: nan

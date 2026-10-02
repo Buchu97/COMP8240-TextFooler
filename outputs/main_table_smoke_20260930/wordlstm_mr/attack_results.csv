@@ -1,0 +1,2 @@
+"original_text","perturbed_text","original_score","perturbed_score","original_output","perturbed_output","ground_truth_output","num_queries","result_type"
+"if not a home run , then at least a [[solid]] base hit .","if not a home run , then at least a [[solids]] base hit .",0.39739781618118286,0.7109642028808594,1,0,1,21,"Successful"

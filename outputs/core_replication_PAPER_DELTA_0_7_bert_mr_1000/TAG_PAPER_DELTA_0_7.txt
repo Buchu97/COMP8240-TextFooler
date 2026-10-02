@@ -1,0 +1,1 @@
+PAPER_STATED_WORD_DELTA_0_7: N=50, minimum word-embedding cosine delta=0.7.

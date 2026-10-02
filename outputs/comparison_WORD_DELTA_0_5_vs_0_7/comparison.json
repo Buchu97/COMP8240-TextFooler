@@ -1,0 +1,56 @@
+{
+  "comparison_tag": "WORD_DELTA_0_5_VS_0_7_CONTROLLED_COMPARISON",
+  "completed_date": "2026-08-28",
+  "controlled_variable": "WordEmbeddingDistance.min_cos_sim",
+  "constants": {
+    "model": "bert-base-uncased-mr",
+    "dataset": "rotten_tomatoes test split selected by the model shortcut",
+    "examples": 1000,
+    "random_seed": 8240,
+    "shuffled": true,
+    "max_word_candidates_N": 50
+  },
+  "control_audit": {
+    "normalized_source_text_row_mismatches": 0,
+    "ground_truth_label_row_mismatches": 0,
+    "original_model_prediction_row_mismatches": 0
+  },
+  "runs": {
+    "MAINTAINED_TEXTATTACK_DELTA_0_5": {
+      "folder": "outputs/core_replication_bert_mr_1000",
+      "word_embedding_delta": 0.5,
+      "successful": 748,
+      "failed": 90,
+      "skipped": 162,
+      "original_accuracy_percent": 83.8,
+      "accuracy_under_attack_percent": 9.0,
+      "attack_success_rate_percent": 89.26014319809069,
+      "average_perturbed_word_percent": 19.15,
+      "average_queries": 109.78,
+      "use_large_v3_mean_cosine_successes": 0.8378772931223247
+    },
+    "PAPER_STATED_WORD_DELTA_0_7": {
+      "folder": "outputs/core_replication_PAPER_DELTA_0_7_bert_mr_1000",
+      "word_embedding_delta": 0.7,
+      "successful": 710,
+      "failed": 128,
+      "skipped": 162,
+      "original_accuracy_percent": 83.8,
+      "accuracy_under_attack_percent": 12.8,
+      "attack_success_rate_percent": 84.72553699284009,
+      "average_perturbed_word_percent": 23.49,
+      "average_queries": 65.01,
+      "use_large_v3_mean_cosine_successes": 0.846486299726325
+    }
+  },
+  "delta_0_7_minus_0_5": {
+    "successful": -38,
+    "failed": 38,
+    "skipped": 0,
+    "accuracy_under_attack_percentage_points": 3.8,
+    "attack_success_rate_percentage_points": -4.534606205250601,
+    "average_perturbed_word_percentage_points": 4.34,
+    "average_queries": -44.77,
+    "use_large_v3_mean_cosine": 0.0086090066040003
+  }
+}

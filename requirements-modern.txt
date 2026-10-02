@@ -1,0 +1,10 @@
+# PyTorch is installed separately from the CUDA 12.8 wheel index by setup.ps1.
+setuptools==80.9.0
+numpy==1.26.4
+pandas==2.2.3
+scipy==1.14.1
+datasets==2.19.2
+transformers==4.41.2
+textattack==0.3.10
+tensorflow==2.15.1
+tensorflow-hub==0.16.1

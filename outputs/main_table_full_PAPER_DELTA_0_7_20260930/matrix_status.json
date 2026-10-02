@@ -1,0 +1,171 @@
+{
+  "generated_at_utc": "2026-09-30T13:52:38.636472+00:00",
+  "num_examples_per_cell": 1000,
+  "random_seed": 8240,
+  "paper_word_similarity_delta": 0.7,
+  "cells": [
+    {
+      "model_family": "wordcnn",
+      "dataset": "mr",
+      "model_alias": "cnn-mr",
+      "supported": true,
+      "limitation": null,
+      "cell_id": "wordcnn_mr",
+      "status": "not_selected"
+    },
+    {
+      "model_family": "wordcnn",
+      "dataset": "imdb",
+      "model_alias": "cnn-imdb",
+      "supported": true,
+      "limitation": null,
+      "cell_id": "wordcnn_imdb",
+      "status": "completed",
+      "started_at_utc": "2026-09-30T13:52:38.636472+00:00",
+      "command": [
+        "D:\\Budhil\\Grad Dip Res\\sem 2\\8240\\TextFooler\\.venv\\Scripts\\python.exe",
+        "-m",
+        "textattack",
+        "attack",
+        "--attack-from-file",
+        "D:\\Budhil\\Grad Dip Res\\sem 2\\8240\\TextFooler\\scripts\\textfooler_paper_delta_0_7.py^Attack",
+        "--model",
+        "cnn-imdb",
+        "--num-examples",
+        "1000",
+        "--shuffle",
+        "--random-seed",
+        "8240",
+        "--log-to-txt",
+        "D:\\Budhil\\Grad Dip Res\\sem 2\\8240\\TextFooler\\outputs\\main_table_full_PAPER_DELTA_0_7_20260930\\wordcnn_imdb\\attack_results.txt",
+        "--log-to-csv",
+        "D:\\Budhil\\Grad Dip Res\\sem 2\\8240\\TextFooler\\outputs\\main_table_full_PAPER_DELTA_0_7_20260930\\wordcnn_imdb\\attack_results.csv",
+        "--log-summary-to-json",
+        "D:\\Budhil\\Grad Dip Res\\sem 2\\8240\\TextFooler\\outputs\\main_table_full_PAPER_DELTA_0_7_20260930\\wordcnn_imdb\\attack_summary.json",
+        "--checkpoint-interval",
+        "50",
+        "--checkpoint-dir",
+        "D:\\Budhil\\Grad Dip Res\\sem 2\\8240\\TextFooler\\outputs\\main_table_full_PAPER_DELTA_0_7_20260930\\wordcnn_imdb\\checkpoints"
+      ],
+      "return_code": 0,
+      "finished_at_utc": "2026-09-30T14:04:16.245393+00:00"
+    },
+    {
+      "model_family": "wordcnn",
+      "dataset": "yelp",
+      "model_alias": "cnn-yelp",
+      "supported": true,
+      "limitation": null,
+      "cell_id": "wordcnn_yelp",
+      "status": "not_selected"
+    },
+    {
+      "model_family": "wordcnn",
+      "dataset": "ag",
+      "model_alias": "cnn-ag-news",
+      "supported": true,
+      "limitation": null,
+      "cell_id": "wordcnn_ag",
+      "status": "not_selected"
+    },
+    {
+      "model_family": "wordcnn",
+      "dataset": "fake",
+      "model_alias": null,
+      "supported": false,
+      "limitation": "No maintained TextAttack checkpoint/dataset alias for Fake News.",
+      "cell_id": "wordcnn_fake",
+      "status": "blocked_missing_checkpoint"
+    },
+    {
+      "model_family": "wordlstm",
+      "dataset": "mr",
+      "model_alias": "lstm-mr",
+      "supported": true,
+      "limitation": null,
+      "cell_id": "wordlstm_mr",
+      "status": "not_selected"
+    },
+    {
+      "model_family": "wordlstm",
+      "dataset": "imdb",
+      "model_alias": "lstm-imdb",
+      "supported": true,
+      "limitation": null,
+      "cell_id": "wordlstm_imdb",
+      "status": "not_selected"
+    },
+    {
+      "model_family": "wordlstm",
+      "dataset": "yelp",
+      "model_alias": "lstm-yelp",
+      "supported": true,
+      "limitation": null,
+      "cell_id": "wordlstm_yelp",
+      "status": "not_selected"
+    },
+    {
+      "model_family": "wordlstm",
+      "dataset": "ag",
+      "model_alias": "lstm-ag-news",
+      "supported": true,
+      "limitation": null,
+      "cell_id": "wordlstm_ag",
+      "status": "not_selected"
+    },
+    {
+      "model_family": "wordlstm",
+      "dataset": "fake",
+      "model_alias": null,
+      "supported": false,
+      "limitation": "No maintained TextAttack checkpoint/dataset alias for Fake News.",
+      "cell_id": "wordlstm_fake",
+      "status": "blocked_missing_checkpoint"
+    },
+    {
+      "model_family": "bert",
+      "dataset": "mr",
+      "model_alias": "bert-base-uncased-mr",
+      "supported": true,
+      "limitation": null,
+      "cell_id": "bert_mr",
+      "status": "not_selected"
+    },
+    {
+      "model_family": "bert",
+      "dataset": "imdb",
+      "model_alias": "bert-base-uncased-imdb",
+      "supported": true,
+      "limitation": null,
+      "cell_id": "bert_imdb",
+      "status": "not_selected"
+    },
+    {
+      "model_family": "bert",
+      "dataset": "yelp",
+      "model_alias": "bert-base-uncased-yelp",
+      "supported": true,
+      "limitation": null,
+      "cell_id": "bert_yelp",
+      "status": "not_selected"
+    },
+    {
+      "model_family": "bert",
+      "dataset": "ag",
+      "model_alias": "bert-base-uncased-ag-news",
+      "supported": true,
+      "limitation": null,
+      "cell_id": "bert_ag",
+      "status": "not_selected"
+    },
+    {
+      "model_family": "bert",
+      "dataset": "fake",
+      "model_alias": null,
+      "supported": false,
+      "limitation": "No maintained TextAttack checkpoint/dataset alias for Fake News.",
+      "cell_id": "bert_fake",
+      "status": "blocked_missing_checkpoint"
+    }
+  ]
+}

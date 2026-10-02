@@ -1,0 +1,12 @@
+﻿Captured: 2026-08-25T22:49:33.6542612+10:00
+Windows: Microsoft Windows NT 10.0.26200.0
+Python: Python 3.11.9
+Official TextFooler commit: 6a56cb10f1055e00a8fbc6882f289e91cfe60f4e
+TextAttack v0.3.10 commit: b2344a3cfbaddffa64457329311d98f53419502a
+Torch / CUDA / available / GPU:
+2.7.1+cu128
+12.8
+True
+NVIDIA GeForce RTX 5060 Ti
+NVIDIA-SMI:
+NVIDIA GeForce RTX 5060 Ti, 591.86, 8151 MiB

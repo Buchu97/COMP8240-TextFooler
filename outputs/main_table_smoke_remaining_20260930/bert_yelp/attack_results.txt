@@ -1,0 +1,15 @@
+--------------------------------------------- Result 1 ---------------------------------------------
+[[2 (100%)]] --> [[1 (72%)]]
+
+I had the fish, carnitas, and carne asada [[tacos]]. The carne asada tacos were the [[best]], although they didn't taste anything what I expected. They were kind of sweet. What really makes the tacos are the homemade tortillas which are fresh and perfect.\nChips [[were]] cold and not good at all.
+
+I had the fish, carnitas, and carne asada [[blocks]]. The carne asada tacos were the [[better]], although they didn't taste anything what I expected. They were kind of sweet. What really makes the tacos are the homemade tortillas which are fresh and perfect.\nChips [[became]] cold and not good at all.
+Number of successful attacks: 1
+Number of failed attacks: 0
+Number of skipped attacks: 0
+Original accuracy: 100.0%
+Accuracy under attack: 0.0%
+Attack success rate: 100.0%
+Average perturbed word %: 5.88%
+Average num. words per input: 51.0
+Avg num queries: 74.0

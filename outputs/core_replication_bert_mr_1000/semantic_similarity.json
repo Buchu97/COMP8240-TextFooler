@@ -1,0 +1,25 @@
+{
+  "source_csv": "D:\\Budhil\\Grad Dip Res\\sem 2\\8240\\TextFooler\\outputs\\core_replication_bert_mr_1000\\attack_results.csv",
+  "examples": 1000,
+  "successful": 748,
+  "failed": 90,
+  "skipped": 162,
+  "derived_metrics": {
+    "original_accuracy_percent": 83.8,
+    "accuracy_under_attack_percent": 9.0,
+    "attack_success_rate_percent": 89.26014319809069
+  },
+  "semantic_similarity": {
+    "model": "Universal Sentence Encoder Large v3",
+    "authors_url": "https://tfhub.dev/google/universal-sentence-encoder-large/3",
+    "resolved_mirror": "https://www.kaggle.com/models/google/universal-sentence-encoder/TensorFlow1/large/3",
+    "local_model_path": "D:\\Budhil\\Grad Dip Res\\sem 2\\8240\\TextFooler\\models\\use-large-v3\\model",
+    "population": "successful attacks only",
+    "n": 748,
+    "mean_cosine": 0.8378772931223247,
+    "median_cosine": 0.8878904581069946,
+    "standard_deviation": 0.159008623259913,
+    "minimum": 0.1836012601852417,
+    "maximum": 0.9993886351585388
+  }
+}
