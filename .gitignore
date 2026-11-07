@@ -1,0 +1,26 @@
+# Local runtime and downloaded assets
+.venv*/
+venv/
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+/repo/
+/models/
+/data/
+/outputs/
+/private/
+/tmp/
+
+# Local configuration and credentials
+.env
+.env.*
+*.pem
+*.key
+*.log
+*.lock
+*.part
+*.tmp
+.*/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,273 @@
+{
+  "bert_mr": {
+    "source_folder": "https://drive.google.com/drive/folders/1dbZBTOYm42XbTFXp4DPrpWNRAheRpvjX",
+    "files": {
+      "pytorch_model.bin": {
+        "file_id": "1ceklt5EBHn2RVKRPmaQLxKKhcDObHMvQ",
+        "bytes": 437983779,
+        "sha256": "b64e088cb0ae439c34ac5e9c05ee093d26e7e7863bf09cc14710060d53cc23e9",
+        "sha256_provenance": "Locally calculated from the public released artifact downloaded on 2026-11-01"
+      },
+      "bert_config.json": {
+        "file_id": "1oPGXr66hZNOGY92GcEua5qjdcF2bPVxL",
+        "bytes": 313,
+        "sha256": "7b4e5f53efbd058c67cda0aacfafb340113ea1b5797d9ce6ee411704ba21fcbc",
+        "sha256_provenance": "Locally calculated from the public released artifact downloaded on 2026-11-01"
+      },
+      "vocab.txt": {
+        "file_id": "1nxEF8F-33ENfcD7riz2Ns0nGARQxGshr",
+        "bytes": 231508,
+        "sha256": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+        "sha256_provenance": "Locally calculated from the public released artifact downloaded on 2026-11-01"
+      }
+    }
+  },
+  "bert_imdb": {
+    "source_folder": "https://drive.google.com/drive/folders/1xog7EYBk1esscLgHxk23f46f73-kixC7",
+    "files": {
+      "vocab.txt": {
+        "file_id": "1YkE2KMXsyHH1k1_0Z9Lf_6fz46qRmw1n",
+        "bytes": 231508,
+        "sha256": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+        "sha256_provenance": "Locally calculated from the public released artifact downloaded on 2026-11-01"
+      },
+      "pytorch_model.bin": {
+        "file_id": "1DoSL5GXrAGQbl4Fmaa5n7eJetleohD51",
+        "bytes": 437983779,
+        "sha256": "b4cef96832fdb6325874ea1fc5aad4f128a0ea493d0a625b4dd40610165b7a81",
+        "sha256_provenance": "Locally calculated from the public released artifact downloaded on 2026-11-01"
+      },
+      "bert_config.json": {
+        "file_id": "1XRJI2iYClhOTW0zE08S2mZw-LVwMwhfb",
+        "bytes": 313,
+        "sha256": "7b4e5f53efbd058c67cda0aacfafb340113ea1b5797d9ce6ee411704ba21fcbc",
+        "sha256_provenance": "Locally calculated from the public released artifact downloaded on 2026-11-01"
+      }
+    }
+  },
+  "bert_yelp": {
+    "source_folder": "https://drive.google.com/drive/folders/1j8-eQud-VjUmRkfbDbpOxcsAPsmQgkZ5",
+    "files": {
+      "pytorch_model.bin": {
+        "file_id": "1yH6WZKjCxkNupSv4SfDaLveiwBdyc4ZZ",
+        "bytes": 437983779,
+        "sha256": "f58693c080edd45b451095a0e734f284a48690d990513c8a4cfdd1b3588900a9",
+        "sha256_provenance": "Locally calculated from the public released artifact downloaded on 2026-11-01"
+      },
+      "vocab.txt": {
+        "file_id": "1ChwI7-gUaAPEC_xEZtYHzRa1iTWJxVmV",
+        "bytes": 231508,
+        "sha256": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+        "sha256_provenance": "Locally calculated from the public released artifact downloaded on 2026-11-01"
+      },
+      "bert_config.json": {
+        "file_id": "1iPj592O0MaKKkpWSLaVdlt6cG7FpIUUH",
+        "bytes": 313,
+        "sha256": "7b4e5f53efbd058c67cda0aacfafb340113ea1b5797d9ce6ee411704ba21fcbc",
+        "sha256_provenance": "Locally calculated from the public released artifact downloaded on 2026-11-01"
+      }
+    }
+  },
+  "bert_ag": {
+    "source_folder": "https://drive.google.com/drive/folders/1dZAENauQCy1QgMbL5i7nTlXaGEe3riu-",
+    "files": {
+      "vocab.txt": {
+        "file_id": "1sAmInfwE0G-gByIQURuGD2BIV2ho39Eb",
+        "bytes": 231508,
+        "sha256": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+        "sha256_provenance": "Locally calculated from the public released artifact downloaded on 2026-11-01"
+      },
+      "pytorch_model.bin": {
+        "file_id": "1MzXDajEOj-Kq9s7ClHZB_qfD7iq1hPVF",
+        "bytes": 437989931,
+        "sha256": "90c77243f5db2efc800942098ba1b8a26b9753d56693c107be505807cac42077",
+        "sha256_provenance": "Locally calculated from the public released artifact downloaded on 2026-11-01"
+      },
+      "bert_config.json": {
+        "file_id": "15g0OZ4UfJrJGdfLGHJ84L2xTJOcUzU47",
+        "bytes": 313,
+        "sha256": "7b4e5f53efbd058c67cda0aacfafb340113ea1b5797d9ce6ee411704ba21fcbc",
+        "sha256_provenance": "Locally calculated from the public released artifact downloaded on 2026-11-01"
+      }
+    }
+  },
+  "bert_fake": {
+    "source_folder": "https://drive.google.com/drive/folders/1l3UjjdRONosgaCi-6xh-pr_7SEphRKwU",
+    "files": {
+      "pytorch_model.bin": {
+        "file_id": "1ZF2Yo7UhotpUK40bPfa7OQvzw2iCZ9_L",
+        "bytes": 437983779,
+        "sha256": "d29bcef4ba34d04c04b6f058da6ee848d88c9114c003d541d9b3b3a985f85ee7",
+        "sha256_provenance": "Locally calculated from the public released artifact downloaded on 2026-11-01"
+      },
+      "bert_config.json": {
+        "file_id": "1vAgJ66pF-9l4J9j3Nx_lAfBIbH6Wl8Bc",
+        "bytes": 313,
+        "sha256": "7b4e5f53efbd058c67cda0aacfafb340113ea1b5797d9ce6ee411704ba21fcbc",
+        "sha256_provenance": "Locally calculated from the public released artifact downloaded on 2026-11-01"
+      },
+      "vocab.txt": {
+        "file_id": "1HmMSFY9HgQZKi5-B5_X4gNks7z7pvFqH",
+        "bytes": 231508,
+        "sha256": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+        "sha256_provenance": "Locally calculated from the public released artifact downloaded on 2026-11-01"
+      }
+    }
+  },
+  "cnn_mr": {
+    "source_folder": "https://drive.google.com/drive/folders/1Ifowzfers0m1Aw2vE8O7SMifHUhkTEjh",
+    "files": {
+      "pytorch_model.bin": {
+        "file_id": "1L8obWofttTSJ4AQkWHwzXK-qS_E75j4X",
+        "bytes": 320966142,
+        "sha256": "fcec5901c88d6a2b971212d55ff15f24462c722ca08cdb509fd9c8dd86dcc6a1",
+        "sha256_provenance": "Locally calculated from the public released artifact downloaded on 2026-11-01"
+      }
+    }
+  },
+  "cnn_imdb": {
+    "source_folder": "https://drive.google.com/drive/folders/1Ifowzfers0m1Aw2vE8O7SMifHUhkTEjh",
+    "files": {
+      "pytorch_model.bin": {
+        "file_id": "1pDH5FftuWpVxjxbrC_XrvC7NqXrgjTGW",
+        "bytes": 320966142,
+        "sha256": "5e7a5a735bf96f649d19d177a08803684d6c72fe6401e5aaa5894fb36f4f6b8a",
+        "sha256_provenance": "Locally calculated from the public released artifact downloaded on 2026-11-01"
+      }
+    }
+  },
+  "cnn_yelp": {
+    "source_folder": "https://drive.google.com/drive/folders/1Ifowzfers0m1Aw2vE8O7SMifHUhkTEjh",
+    "files": {
+      "pytorch_model.bin": {
+        "file_id": "1z_Jvk430Y_8qJFnnGAQIl9i7kd9kmKGx",
+        "bytes": 320966142,
+        "sha256": "b4da2ce1e410e833e96d45ab250e2e693ca3b88351c3aa28fb6c2d95e14c529c",
+        "sha256_provenance": "Locally calculated from the public released artifact downloaded on 2026-11-01"
+      }
+    }
+  },
+  "cnn_ag": {
+    "source_folder": "https://drive.google.com/drive/folders/1Ifowzfers0m1Aw2vE8O7SMifHUhkTEjh",
+    "files": {
+      "pytorch_model.bin": {
+        "file_id": "1X0Z5ZmpGpYGxj9K-uqWnfPIF2GffzE3J",
+        "bytes": 320968550,
+        "sha256": "a9df1165c038f5bbad8745a3eb9d3ce8c94b217dd91308736b2ba268fe2d5344",
+        "sha256_provenance": "Locally calculated from the public released artifact downloaded on 2026-11-01"
+      }
+    }
+  },
+  "cnn_fake": {
+    "source_folder": "https://drive.google.com/drive/folders/1Ifowzfers0m1Aw2vE8O7SMifHUhkTEjh",
+    "files": {
+      "pytorch_model.bin": {
+        "file_id": "1PtiDs88v2xKrp-PpAOgBYIShVmuHaaGJ",
+        "bytes": 320966142,
+        "sha256": "4406a839fbd1bd30186868f330ce665887a493cca0a04289a3b1abaab91503f1",
+        "sha256_provenance": "Locally calculated from the public released artifact downloaded on 2026-11-01"
+      }
+    }
+  },
+  "lstm_mr": {
+    "source_folder": "https://drive.google.com/drive/folders/108myH_HHtBJX8MvhBQuvTGb-kGOce5M2",
+    "files": {
+      "pytorch_model.bin": {
+        "file_id": "195NNNv_HpBFBHi4sUkFyp2mY2SeqgtOm",
+        "bytes": 320668489,
+        "sha256": "99e30045dc48c9462f61f026c314637a7b124e5e16f81c5cea98377faa183982",
+        "sha256_provenance": "Locally calculated from the public released artifact downloaded on 2026-11-01"
+      }
+    }
+  },
+  "lstm_imdb": {
+    "source_folder": "https://drive.google.com/drive/folders/108myH_HHtBJX8MvhBQuvTGb-kGOce5M2",
+    "files": {
+      "pytorch_model.bin": {
+        "file_id": "152bm3fm_r4Wws1rtqTv5evhwSf4760XM",
+        "bytes": 320668489,
+        "sha256": "76924461e93220e1949fbdce23015d1dad0eda5a8886427220ed6bd70a7cd01e",
+        "sha256_provenance": "Locally calculated from the public released artifact downloaded on 2026-11-01"
+      }
+    }
+  },
+  "lstm_yelp": {
+    "source_folder": "https://drive.google.com/drive/folders/108myH_HHtBJX8MvhBQuvTGb-kGOce5M2",
+    "files": {
+      "pytorch_model.bin": {
+        "file_id": "1cqlYldZgeev8csHMgTVey-o4C1Ey9rFg",
+        "bytes": 320668489,
+        "sha256": "3ae4448e8895f48a7d27f9b9532a0c0e4d5628494aebfcb4cde86167e7965c06",
+        "sha256_provenance": "Locally calculated from the public released artifact downloaded on 2026-11-01"
+      }
+    }
+  },
+  "lstm_ag": {
+    "source_folder": "https://drive.google.com/drive/folders/108myH_HHtBJX8MvhBQuvTGb-kGOce5M2",
+    "files": {
+      "pytorch_model.bin": {
+        "file_id": "1tpEajZve_UFGEjEjlGvT2Sv1QPq9PTko",
+        "bytes": 320669697,
+        "sha256": "4929e360dfacbfc1035d4879eb2180554bc7432780f67ddde5ca231eaf66cad2",
+        "sha256_provenance": "Locally calculated from the public released artifact downloaded on 2026-11-01"
+      }
+    }
+  },
+  "lstm_fake": {
+    "source_folder": "https://drive.google.com/drive/folders/108myH_HHtBJX8MvhBQuvTGb-kGOce5M2",
+    "files": {
+      "pytorch_model.bin": {
+        "file_id": "1KWcOND53xjr5Xh1LViBNasZKReleDmfY",
+        "bytes": 320668489,
+        "sha256": "5619179f62e27f75182d64318a011ca9cc4a7bc4b396de98fd77af96fa1c9b33",
+        "sha256_provenance": "Locally calculated from the public released artifact downloaded on 2026-11-01"
+      }
+    }
+  },
+  "bert_snli": {
+    "source_folder": "https://github.com/jind11/TextFooler#train-target-models",
+    "files": {
+      "pytorch_model.bin": {
+        "file_id": "1OGIQO_F2KjVfxctgmdMUheFOtAh8gZ8w",
+        "bytes": 437986855,
+        "sha256": "9e619a4b8b1bca3ad8a854a90d3cae0807154821d97154b80e2218a761a51c88",
+        "sha256_provenance": "Locally calculated from the public released artifact downloaded on 2026-11-01"
+      },
+      "bert_config.json": {
+        "file_id": "1IHqOlEJZRWXDpVHtv-wtCo25kugJxnRR",
+        "bytes": 313,
+        "sha256": "7b4e5f53efbd058c67cda0aacfafb340113ea1b5797d9ce6ee411704ba21fcbc",
+        "sha256_provenance": "Locally calculated from the public released artifact downloaded on 2026-11-01"
+      },
+      "vocab.txt": {
+        "file_id": "1LBUp_C_J0U7Z5NISl1Hif88OrOqi2HmP",
+        "bytes": 231508,
+        "sha256": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+        "sha256_provenance": "Locally calculated from the public released artifact downloaded on 2026-11-01"
+      }
+    }
+  },
+  "bert_mnli": {
+    "source_folder": "https://github.com/jind11/TextFooler#train-target-models",
+    "files": {
+      "pytorch_model.bin": {
+        "file_id": "1pbPRy-whHKKIeUuEJaZymkMUCCFlGyPO",
+        "bytes": 437986855,
+        "sha256": "45715be8b32e46dbe95cee8320c542f0fb681e73f6d109bffe384b3ad7167247",
+        "sha256_provenance": "Locally calculated from the public released artifact downloaded on 2026-11-01"
+      },
+      "bert_config.json": {
+        "file_id": "1ddaxLSeOiJSKbXbOsPtgGthIZDe6MEOo",
+        "bytes": 313,
+        "sha256": "7b4e5f53efbd058c67cda0aacfafb340113ea1b5797d9ce6ee411704ba21fcbc",
+        "sha256_provenance": "Locally calculated from the public released artifact downloaded on 2026-11-01"
+      },
+      "vocab.txt": {
+        "file_id": "1CEAR6yxHC1b8b-1p5bfKWQH9-KeE5nBI",
+        "bytes": 231508,
+        "sha256": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+        "sha256_provenance": "Locally calculated from the public released artifact downloaded on 2026-11-01"
+      }
+    }
+  }
+}
