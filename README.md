@@ -122,6 +122,18 @@ foreach ($phase in 'development','control','final') {
 
 The Type 2 pilots use the same protocol with [their own source configuration](notes/judge_sources_type2.json). The data, request bundles, raw responses and review keys are held locally.
 
+## Results
+
+The tables in [results/](results/) describe the verified 3 November 2026 snapshot.
+
+- [Original-data comparison](results/original_replication.csv) covers all 18 main comparisons. Clean accuracy matched the paper to one decimal place in 14 settings. The BERT/Fake News baseline remained 59.5% versus 97.8% in the paper. The legacy and modern loaders agreed on all 1,000 released Fake News inputs.
+- [Sentence-similarity ablations](results/sentence_ablation.csv) cover the two paired BERT experiments. Their cosine comparison uses inputs that both variants attacked successfully.
+- [Type 1 attack results](results/type1_attacks.csv) cover the five additional datasets. The [class-level breakdown](results/type1_per_class.csv) covers SciCite and Environmental Claims.
+- [Type 1 judge results](results/type1_judge.csv) count 88 accepted, 120 rejected and 42 uncertain out of 250 sampled prediction changes. These are judge decisions on a balanced sample of successful attacks. The [judge checks](results/type1_judge_checks.json) record control outcomes and response validation.
+- [Type 2 attack results](results/type2_pilots.csv) cover the 212 agreed TMDB examples and the 235 reviewed generated examples in the partial pilots. [TMDB agreement](results/type2_review_agreement.csv) is measured on 250 overlapping reviews before adjudication. Type 2 semantic results are pending in this snapshot.
+
+Clean and after-attack accuracy use all examples. Attack success rate divides successful attacks by the number of initially correct examples. Mean changed words and post-hoc USE-Large cosine are calculated over successful attacks. USE-Large cosine is an automatic similarity measure. The paper-reported similarity in the original-data comparison uses a separate procedure.
+
 ## Sources
 
 - [TextFooler paper and authors' release](https://github.com/jind11/TextFooler)

@@ -1,0 +1,6 @@
+dataset,model,examples,eligible,successful,failed,skipped,original_accuracy_percent,after_attack_accuracy_percent,attack_success_rate_percent,mean_queries_eligible,mean_perturbed_word_percent_successful,mean_use_large_cosine_successful,original_texts_under_15_words,token_truncated_examples
+poem,nickwong64/bert-base-uncased-poems-sentiment,104,88,56,32,16,84.61538461538461,30.76923076923077,63.63636363636363,23.943181818181817,24.388528138528137,0.7901953235268593,102,0
+clinc150,transformersbook/bert-base-uncased-finetuned-clinc,1000,955,847,108,45,95.5,10.8,88.69109947643979,22.8869109947644,20.813405419778856,0.7179542913540335,955,0
+news,Locally fine-tuned DistilBERT,1000,705,652,53,295,70.5,5.3,92.48226950354609,71.61418439716311,16.31100766423714,0.8933727125540102,136,1
+scicite,models/type1_scicite_scibert_20261102,1000,871,442,429,129,87.1,42.9,50.74626865671642,112.0,15.525447490845307,0.9270146591630997,1,1
+environmental_claims,models/environmental_claims_screening_20261102,265,232,95,137,33,87.54716981132076,51.698113207547166,40.94827586206897,104.22844827586206,18.65715939641505,0.9079813674876565,25,0

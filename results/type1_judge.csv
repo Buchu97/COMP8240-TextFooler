@@ -1,0 +1,6 @@
+dataset,selected,judged,accepted,rejected,uncertain,judge_acceptance_percent,mean_perturbed_naturalness,high_use_judged,high_use_rejected,high_use_uncertain
+poem,50,50,17,26,7,34.0,3.34,26,11,5
+clinc150,50,50,14,33,3,28.0,2.82,21,10,2
+news,50,50,13,18,19,26.0,2.48,43,13,17
+scicite,50,50,21,22,7,42.0,2.48,48,22,6
+environmental_claims,50,50,23,21,6,46.0,2.3,42,17,6

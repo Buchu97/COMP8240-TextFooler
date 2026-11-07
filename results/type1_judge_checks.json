@@ -1,0 +1,27 @@
+{
+  "final_totals": {
+    "selected": 250,
+    "judged": 250,
+    "accepted": 88,
+    "rejected": 120,
+    "uncertain": 42
+  },
+  "controls": {
+    "selected": 8,
+    "judged": 8,
+    "passed_pair_checks": 8
+  },
+  "response_sources": {
+    "original_unchanged": 819,
+    "lossless_normalization": 15,
+    "format_retry": 15
+  },
+  "pending_requests": 0,
+  "invalid_requests": 0,
+  "high_use_diagnostic": {
+    "high_use_judged": 180,
+    "high_use_rejected": 73,
+    "high_use_uncertain": 36
+  },
+  "human_semantic_reviews_completed": 0
+}
