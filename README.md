@@ -67,6 +67,26 @@ foreach ($dataset in 'poem','clinc150','news','scicite','environmental_claims') 
 }
 ```
 
+### Constructed sentiment pilots
+
+The two Type 2 pools comprise sentences collected through [TMDB](https://developer.themoviedb.org/docs/faq) and 500 synthetic movie-review sentences generated individually by a language model. The TMDB collector uses a locally configured `TMDB_API_READ_ACCESS_TOKEN` or `TMDB_API_KEY`. A fresh collection can differ as the source changes. This project uses the TMDB API but is not endorsed or certified by TMDB.
+
+```powershell
+& $python scripts/collect_tmdb_reviews.py --output private/tmdb_collection --target 500
+```
+
+The following commands use locally held, authorised review exports for that collection. The frozen TMDB pilot required two matching human labels. The frozen generated pilot used one completed human review per eligible sentence. Both used a pinned Rotten Tomatoes sentiment checkpoint. The release contains aggregate results and the import pipeline. Exact pilot replay requires the corresponding original candidate files and completed human review exports.
+
+```powershell
+& $python -c "from huggingface_hub import snapshot_download; snapshot_download('textattack/bert-base-uncased-rotten-tomatoes', revision='2aeb2b03a543f2eb1f203ca40676fbaf27a3d4fd', cache_dir='data/cache/textattack', allow_patterns=['config.json','pytorch_model.bin','special_tokens_map.json','tokenizer_config.json','vocab.txt'])"
+& $python -c "from textattack.shared import WordEmbedding; from textattack.constraints.semantics.sentence_encoders import UniversalSentenceEncoder; WordEmbedding.counterfitted_GLOVE_embedding(); UniversalSentenceEncoder().encode(['A short movie review.'])"
+& $python scripts/import_type2_reviews.py --samples private/tmdb_collection/samples.csv --metadata private/tmdb_collection/sample_metadata.csv --reviews private/tmdb_reviewer_1.csv private/tmdb_reviewer_2.csv --output-dir outputs/tmdb_import --min-reviewers 2
+& $python scripts/prepare_type2_evaluation.py --import-dir outputs/tmdb_import --output-dir data/processed/tmdb_pilot --experiment-tag TYPE2_PILOT_TMDB --min-reviewers 2 --allow-partial
+& $python scripts/run_type2.py --dataset-dir data/processed/tmdb_pilot --output-dir outputs/tmdb_reviewed_pilot --allow-partial --dry-run
+```
+
+The asset commands use the cache environment variables set by `setup.ps1` in the current shell. Remove `--dry-run` to run the attack after verification. To evaluate a generated-review pilot, use its authorised candidate and reviewer exports and set `--min-reviewers 1` at both import and preparation. The semantic-similarity analysis uses the same `analyze_type1.py` command.
+
 ## Sources
 
 - [TextFooler paper and authors' release](https://github.com/jind11/TextFooler)

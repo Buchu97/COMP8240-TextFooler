@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "prepared_on": "2026-11-03",
+  "scope": "Evaluation of human-reviewed Type2 movie sentiment samples; no training or train/test split",
+  "model": {
+    "kind": "published_classifier",
+    "id": "textattack/bert-base-uncased-rotten-tomatoes",
+    "revision": "2aeb2b03a543f2eb1f203ca40676fbaf27a3d4fd",
+    "snapshot_path": "data/cache/textattack/models--textattack--bert-base-uncased-rotten-tomatoes/snapshots/2aeb2b03a543f2eb1f203ca40676fbaf27a3d4fd",
+    "max_length": 512,
+    "semantic_label2id": {
+      "negative": 0,
+      "positive": 1
+    },
+    "config_label_map": "No id2label or label2id supplied; Transformers binary default is LABEL_0/LABEL_1",
+    "loading": "Pinned project-local snapshot; local_files_only=True; no remote code; semantic names attached only in memory after output/anchor validation"
+  },
+  "label_mapping_evidence": {
+    "cached_dataset_info": "notes/type2_label_evidence.json",
+    "cached_label_names": [
+      "neg",
+      "pos"
+    ],
+    "previous_anchor_record": "notes/type2_label_evidence.json",
+    "previous_anchor_predictions": [
+      0,
+      1
+    ],
+    "limitation": "Saved anchor predictions are behavioral evidence, not a semantic mapping supplied by the checkpoint config; the live adapter repeats anchors before evaluation"
+  },
+  "attack": {
+    "recipe": "scripts/textfooler_paper_delta_0_7.py",
+    "runner": "scripts/run_type1.py",
+    "adapter": "scripts/run_type2.py",
+    "N": 50,
+    "word_cosine_delta": 0.7,
+    "seed": 8240,
+    "shuffle": false,
+    "pre_transformation_constraints": [
+      "RepeatModification",
+      "StopwordModification",
+      "InputColumnModification"
+    ],
+    "sentence_constraint": {
+      "url": "https://tfhub.dev/google/universal-sentence-encoder/3",
+      "metric": "angular",
+      "threshold": 0.840845057,
+      "window_size": 15,
+      "compare_against_original": false,
+      "skip_text_shorter_than_window": true
+    },
+    "use_local_cache": "data/cache/textattack/42480c3c7f42bf87d36d4c58fc4374b08dae2909",
+    "cache_behavior": "Installed TextAttack set_cache_dir overrides TFHUB_CACHE_DIR to TA_CACHE_DIR on import"
+  },
+  "review_policy": {
+    "min_reviewers": "Explicit CLI argument; must match importer report; no assessment minimum inferred",
+    "complete_population_default": true,
+    "partial_pilot": "Requires --allow-partial and TYPE2_PILOT_ experiment tag; no further sampling or automatic disagreement resolution"
+  },
+  "limitations": [
+    "Hashes validate file consistency, not actual reviewer identity/independence.",
+    "Checkpoint training membership of web-sourced sentences is unknown.",
+    "Original human sentiment review does not establish adversarial meaning/label preservation.",
+    "Retained sentence constraint bypasses inputs below 15 TextAttack words.",
+    "Max tokenizer length is 512, as in the cached tokenizer; truncation is recorded by the existing runner."
+  ],
+  "required_files_sha256": {
+    "data/cache/textattack/models--textattack--bert-base-uncased-rotten-tomatoes/snapshots/2aeb2b03a543f2eb1f203ca40676fbaf27a3d4fd/config.json": "c5baa72148c47db206c47ea2aa750aad78433964c9a1c8f566d3f102b7936645",
+    "data/cache/textattack/models--textattack--bert-base-uncased-rotten-tomatoes/snapshots/2aeb2b03a543f2eb1f203ca40676fbaf27a3d4fd/pytorch_model.bin": "0fedd630c05b94824e639d7be57f6761611bfe620870249e419cd086d2292c9b",
+    "data/cache/textattack/models--textattack--bert-base-uncased-rotten-tomatoes/snapshots/2aeb2b03a543f2eb1f203ca40676fbaf27a3d4fd/special_tokens_map.json": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3",
+    "data/cache/textattack/models--textattack--bert-base-uncased-rotten-tomatoes/snapshots/2aeb2b03a543f2eb1f203ca40676fbaf27a3d4fd/tokenizer_config.json": "a025160ef0431f1a392f6f050c1310f4c5d9fb6f275932dbccba73c4d214bf10",
+    "data/cache/textattack/models--textattack--bert-base-uncased-rotten-tomatoes/snapshots/2aeb2b03a543f2eb1f203ca40676fbaf27a3d4fd/vocab.txt": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+    "scripts/run_type1.py": "fe1fb2d63651160666d6dc65a362fff57b0cf609bf9c2e790d60d1e36c14ca75",
+    "scripts/textfooler_paper_delta_0_7.py": "348d4c68b2fcad6d1a6754ad5c831ad7bc5e5f8f207e369bc065e5a4bcaa7ee6",
+    "data/cache/textattack/post_install_check_3": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "data/cache/textattack/42480c3c7f42bf87d36d4c58fc4374b08dae2909/saved_model.pb": "b404dc99dd2a735f0945a5637ffe05a2ccc2f4fca12b74e2a62c57451b266366",
+    "data/cache/textattack/42480c3c7f42bf87d36d4c58fc4374b08dae2909/variables/variables.index": "e266fe9965563923f7ef656947cbc4e2cf7734bb3bf4d08f43f613dc9295a680",
+    "data/cache/textattack/42480c3c7f42bf87d36d4c58fc4374b08dae2909/variables/variables.data-00000-of-00001": "c79748d5b430e18b3483b1c16513338195170bd44bd2a7207d49c5036b4cca84",
+    "data/cache/textattack/word_embeddings/paragramcf/paragram.npy": "6e0dc56e420446d35cc3a13540c5854167b4f5e658c1f39deae3809846ad1aea",
+    "data/cache/textattack/word_embeddings/paragramcf/wordlist.pickle": "974e09d9658fb2a333bf6629650d92585695d5dc3716dc1d1cb1ca946223c5d2",
+    "data/cache/textattack/word_embeddings/paragramcf/nn.npy": "54c3155d6cf64b9bd7061caefe63a474c896ddb2a32cbd3c7bd7a0dc62e492ff",
+    "data/cache/textattack/word_embeddings/paragramcf/cos_sim.p": "88ade98909d458fd2fd0c143958df093eea2912aa286682e8f68926f427718f1",
+    "notes/type2_label_evidence.json": "d54b7065e577fd590ca936d437f9d532eb06e1a29bbd08703a2b257ce9721997"
+  }
+}

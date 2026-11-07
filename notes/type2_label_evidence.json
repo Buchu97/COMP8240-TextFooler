@@ -1,0 +1,17 @@
+{
+  "features": {
+    "label": {
+      "names": [
+        "neg",
+        "pos"
+      ]
+    }
+  },
+  "dataset_revision": "aa13bc287fa6fcab6daf52f0dfb9994269ffea28",
+  "dataset_source": "https://huggingface.co/datasets/cornell-movie-review-data/rotten_tomatoes",
+  "model_revision": "2aeb2b03a543f2eb1f203ca40676fbaf27a3d4fd",
+  "label_map_anchor_predictions": [
+    0,
+    1
+  ]
+}
