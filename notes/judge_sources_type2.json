@@ -1,0 +1,16 @@
+{
+  "sources": [
+    {
+      "dataset": "tmdb_reviewed_pilot",
+      "task": "sentiment",
+      "format": "type1",
+      "run_dir": "outputs/tmdb_reviewed_pilot"
+    },
+    {
+      "dataset": "generated_reviews_pilot",
+      "task": "sentiment",
+      "format": "type1",
+      "run_dir": "outputs/generated_reviews_pilot"
+    }
+  ]
+}

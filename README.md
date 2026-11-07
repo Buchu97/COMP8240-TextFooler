@@ -87,6 +87,41 @@ The following commands use locally held, authorised review exports for that coll
 
 The asset commands use the cache environment variables set by `setup.ps1` in the current shell. Remove `--dry-run` to run the attack after verification. To evaluate a generated-review pilot, use its authorised candidate and reviewer exports and set `--min-reviewers 1` at both import and preparation. The semantic-similarity analysis uses the same `analyze_type1.py` command.
 
+## Semantic evaluation
+
+The judge compares each successful attack with its original text. One request evaluates the pair for meaning, label preservation and naturalness. Two independent requests classify the texts using the task's labels. The judge sees neither the target classifier's outputs nor the source label. Naturalness is reported separately from meaning-and-label acceptance.
+
+Prepare the five Type 1 runs and export an H100 job bundle. The evaluation reserves five development pairs and selects up to 50 final successful pairs per dataset. The protocol also generates controls.
+
+```powershell
+& $python scripts/llm_judge.py prepare --sources notes/judge_sources_type1.json --output-dir outputs/type1_judge --final-per-dataset 50 --audit-size 50
+& $python scripts/llm_judge.py plan --prepared outputs/type1_judge --phase final
+& $python scripts/llm_judge.py export-h100 --prepared outputs/type1_judge --output-dir outputs/type1_h100 --model Qwen/Qwen3.8-27B --model-revision 1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0 --include-final
+```
+
+On the H100, open PowerShell in the exported bundle directory. Setup creates its own virtual environment and model cache. The frozen Type 1 run used the following request counts.
+
+```powershell
+py -3.11 .\h100_judge.py setup
+.\.venv\Scripts\python.exe .\h100_judge.py run --phase development --max-jobs 75
+.\.venv\Scripts\python.exe .\h100_judge.py run --phase control --max-jobs 24
+.\.venv\Scripts\python.exe .\h100_judge.py run --phase final --max-jobs 750
+```
+
+Copy the returned `results` directory into the original bundle and import the responses. For schema failures, `scripts/judge_repair.py` prepares an auditable repair and import. It retains raw responses and supports format-only retries with the same pinned model.
+
+```powershell
+$bundle = 'outputs/type1_h100'
+$phaseFolders = @{development='h100_development'; control='h100_controls'; final='h100_final'}
+foreach ($phase in 'development','control','final') {
+    $bundleFile = Join-Path $bundle "$($phaseFolders[$phase])/bundle.json"
+    & $python scripts/llm_judge.py import-local --prepared outputs/type1_judge --bundle $bundleFile --results-dir "$bundle/results/$phase" --evaluation outputs/type1_judgements
+}
+& $python scripts/llm_judge.py summarize --prepared outputs/type1_judge --evaluation outputs/type1_judgements --report-dir outputs/type1_judge_report --phase final
+```
+
+The Type 2 pilots use the same protocol with [their own source configuration](notes/judge_sources_type2.json). The data, request bundles, raw responses and review keys are held locally.
+
 ## Sources
 
 - [TextFooler paper and authors' release](https://github.com/jind11/TextFooler)

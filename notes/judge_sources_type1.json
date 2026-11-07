@@ -1,0 +1,34 @@
+{
+  "sources": [
+    {
+      "dataset": "poem",
+      "task": "poem",
+      "format": "type1",
+      "run_dir": "outputs/poem"
+    },
+    {
+      "dataset": "clinc150",
+      "task": "intent",
+      "format": "type1",
+      "run_dir": "outputs/clinc150"
+    },
+    {
+      "dataset": "news",
+      "task": "topic",
+      "format": "type1",
+      "run_dir": "outputs/news"
+    },
+    {
+      "dataset": "scicite",
+      "task": "citation_intent",
+      "format": "type1",
+      "run_dir": "outputs/scicite"
+    },
+    {
+      "dataset": "environmental_claims",
+      "task": "environmental_claim",
+      "format": "type1",
+      "run_dir": "outputs/environmental_claims"
+    }
+  ]
+}
