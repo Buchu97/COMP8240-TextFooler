@@ -1,0 +1,31 @@
+--- a/scripts/replication_runs.py
++++ b/scripts/replication_runs.py
+@@ -264,7 +264,7 @@
+                 'model_release':getattr(wrapper,'release_metadata',None),
+                 'sample_manifest_sha256':sha(sample_dir/'manifest.json'), 'evaluation_sha256':manifest['evaluation_sha256'],
+                 'input_columns':manifest['input_columns'], 'model_label_names':manifest['model_label_names'],
+-                'seed':seed, 'per_row_seed':'seed + saved row number', 'N':50, 'word_delta':.7,
++                'seed':seed, 'per_row_seed':'seed + saved row number', 'N':50, 'word_delta':.5,
+                 'tokenizer_max_length':getattr(tokenizer,'model_max_length',getattr(tokenizer,'max_length',None)),
+                 'recipe_sha256':sha(ROOT/'scripts/textfooler_paper_delta_0_7.py'),
+                 'ablation_sha256':sha(ROOT/'scripts/replication_attack.py'), 'runner_sha256':sha(Path(__file__)),
+--- a/scripts/textfooler_paper_delta_0_7.py
++++ b/scripts/textfooler_paper_delta_0_7.py
+@@ -1,6 +1,6 @@
+-"""TextFooler maintained recipe with the paper-stated word delta of 0.7.
++"""TextFooler maintained recipe with the released-code word delta of 0.5.
+ 
+-Only the WordEmbeddingDistance threshold is changed relative to TextAttack
++The word threshold is set to 0.5 using TextAttack
+ v0.3.10's TextFoolerJin2019 recipe. WordSwapEmbedding(max_candidates=50), the
+ goal function, the remaining constraints, and the search method are retained.
+ """
+@@ -18,7 +18,7 @@
+ 
+     for constraint in maintained.constraints:
+         if isinstance(constraint, WordEmbeddingDistance):
+-            constraints.append(WordEmbeddingDistance(min_cos_sim=0.7))
++            constraints.append(WordEmbeddingDistance(min_cos_sim=0.5))
+             replacements += 1
+         else:
+             constraints.append(constraint)

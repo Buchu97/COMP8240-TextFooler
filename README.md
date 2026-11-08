@@ -54,6 +54,19 @@ $modelNames = @($catalog.PSObject.Properties.Name)
 
 The suite covers 15 classification runs, three BERT entailment runs and two BERT ablations. The authors' [checkpoint note](https://github.com/jind11/TextFooler/issues/47#issuecomment-955085106) explains the missing ESIM and InferSent settings. Transfer attacks and adversarial training are outside this replication.
 
+### BERT/AG News word-similarity sensitivity
+
+The paper states a minimum word cosine of 0.7. The released classification code uses 0.5. The sensitivity check runs both cutoffs with the same 1,000 AG News inputs, released BERT checkpoint, seed and remaining attack settings. Use a disposable checkout for the alternate cutoff and leave word-ranking streaming off for both runs.
+
+```powershell
+& $python scripts/download_original_models.py --models bert_ag
+& $python scripts/replication_runs.py prepare --dataset ag --output-dir data/processed/released/ag
+& $python scripts/replication_runs.py run --sample-dir data/processed/released/ag --output-dir outputs/bert_ag_delta_0_7 --model original-bert-ag
+git apply --check notes/bert_ag_word_delta_0_5.patch
+git apply notes/bert_ag_word_delta_0_5.patch
+& $python scripts/replication_runs.py run --sample-dir data/processed/released/ag --output-dir outputs/bert_ag_delta_0_5 --model original-bert-ag
+```
+
 ## New-data evaluation
 
 ### Existing datasets
@@ -183,6 +196,7 @@ Copy the resulting `judge_format_repair/results` directory back under `outputs/t
 The tables in [results/](results/) retain the 3 November 2026 results and include the verified 8 November 2026 Type 2 final evaluation.
 
 - [Original-data comparison](results/original_replication.csv) covers all 18 main comparisons. Clean accuracy matched the paper to one decimal place in 14 settings. The BERT/Fake News baseline remained 59.5% versus 97.8% in the paper. The legacy and modern loaders agreed on all 1,000 released Fake News inputs.
+- [BERT/AG News threshold check](results/bert_ag_word_threshold.json) records the separate paired run. After-attack accuracy was 29.8% at 0.7 and 11.0% at 0.5, compared with 12.5% in the paper. Clean predictions matched on all 1,000 inputs.
 - [Sentence-similarity ablations](results/sentence_ablation.csv) cover the two paired BERT experiments. Their cosine comparison uses inputs that both variants attacked successfully.
 - [Type 1 attack results](results/type1_attacks.csv) cover the five additional datasets. The [class-level breakdown](results/type1_per_class.csv) covers SciCite and Environmental Claims.
 - [Type 1 judge results](results/type1_judge.csv) count 88 accepted, 120 rejected and 42 uncertain out of 250 sampled prediction changes. These are judge decisions on a balanced sample of successful attacks. The [judge checks](results/type1_judge_checks.json) record control outcomes and response validation.

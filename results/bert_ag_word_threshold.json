@@ -1,0 +1,41 @@
+{
+  "dataset": "AG News",
+  "model": "original-bert-ag",
+  "replacement_candidates": 50,
+  "seed": 8240,
+  "evaluation_sha256": "bbef82ac99220668bc639b804427b07461d48a99e3aa1134b60dcdde833b168b",
+  "model_state_sha256": "b1d52ae7356af18873c4545070eb8b1228a3bbc3f125203adb37d2c56a07f99d",
+  "clean_baseline_sha256": "6c3d18de924d757f489f64065545cb777acafd4d9b75cbffd4b8ef7a0ba1faa4",
+  "matched_clean_predictions": 1000,
+  "published_after_attack_accuracy_percent": 12.5,
+  "runs": {
+    "0.7": {
+      "examples": 1000,
+      "eligible": 942,
+      "successful": 644,
+      "original_accuracy_percent": 94.2,
+      "after_attack_accuracy_percent": 29.8,
+      "attack_success_rate_percent": 68.36518046709129,
+      "mean_queries_eligible": 149.57324840764332,
+      "mean_perturbed_word_percent_successful": 22.84021721720092,
+      "summary_sha256": "873a3fb6041dc9bfdf3d07cf787f5b6f4ca2a657962fb3322964efbf87d1aa06"
+    },
+    "0.5": {
+      "examples": 1000,
+      "eligible": 942,
+      "successful": 832,
+      "original_accuracy_percent": 94.2,
+      "after_attack_accuracy_percent": 11.0,
+      "attack_success_rate_percent": 88.32271762208067,
+      "mean_queries_eligible": 259.16454352441616,
+      "mean_perturbed_word_percent_successful": 20.750125611195436,
+      "summary_sha256": "067810ae2c49379ffb7b352df1e5385ed63020cddeb3ccbbd798a8b3085f5ea5"
+    }
+  },
+  "paired_initially_correct": {
+    "both_successful": 641,
+    "only_0_7_successful": 3,
+    "only_0_5_successful": 191,
+    "neither_successful": 107
+  }
+}
