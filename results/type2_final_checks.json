@@ -1,0 +1,42 @@
+{
+  "snapshot_date": "2026-11-08",
+  "annotations": {
+    "minimum_matching_completed_reviews": 2,
+    "datasets": {
+      "tmdb_reviews": {
+        "overlap": 500,
+        "agreed": 412,
+        "agreement_percent": 82.4,
+        "cohen_kappa": 0.596189497255924,
+        "excluded_disagreements": 88,
+        "adjudicated": 0,
+        "evaluation_label_counts": {"negative": 116, "positive": 296}
+      },
+      "synthetic_reviews": {
+        "overlap": 500,
+        "agreed": 500,
+        "agreement_percent": 100.0,
+        "cohen_kappa": 1.0,
+        "excluded_disagreements": 0,
+        "adjudicated": 0,
+        "evaluation_label_counts": {"negative": 250, "positive": 250},
+        "both_reviews_matched_intended_label": 500
+      }
+    }
+  },
+  "judge": {
+    "model": "Qwen/Qwen3.8-27B",
+    "model_revision": "1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0",
+    "seed": 8240,
+    "requests_by_phase": {"development": 30, "control": 9, "final": 300},
+    "controls": {"selected": 3, "judged": 3, "passed_pair_checks": 3},
+    "response_sources": {
+      "original_unchanged": 285,
+      "lossless_normalization": 0,
+      "format_retry": 54
+    },
+    "usable_responses": 339,
+    "pending_requests": 0,
+    "human_semantic_reviews_completed": 0
+  }
+}

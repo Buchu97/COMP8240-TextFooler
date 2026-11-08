@@ -1,0 +1,5 @@
+dataset,sentiment,examples,eligible,successful,attack_success_rate_percent
+tmdb_reviews,negative,116,110,69,62.72727272727273
+tmdb_reviews,positive,296,280,253,90.35714285714286
+synthetic_reviews,negative,250,241,146,60.58091286307054
+synthetic_reviews,positive,250,237,205,86.49789029535864

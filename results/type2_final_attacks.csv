@@ -1,0 +1,3 @@
+dataset,experiment_tag,model,examples,successful,failed,skipped,eligible,original_accuracy_percent,after_attack_accuracy_percent,attack_success_rate_percent,mean_queries_eligible,mean_perturbed_word_percent_successful,mean_use_large_cosine_successful,original_texts_under_15_words,token_truncated_examples
+tmdb_reviews,TYPE2_PILOT_TMDB_AGREED_20261108,textattack/bert-base-uncased-rotten-tomatoes,412,322,68,22,390,94.66019417475728,16.50485436893204,82.56410256410257,78.15384615384616,18.908784765337735,0.854459705930319,99,0
+synthetic_reviews,TYPE2_SYNTHETIC_FINAL_20261108,textattack/bert-base-uncased-rotten-tomatoes,500,351,127,22,478,95.6,25.4,73.43096234309624,55.24476987447699,24.764378244141945,0.7785532109418146,394,0

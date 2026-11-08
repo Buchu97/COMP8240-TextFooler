@@ -2,6 +2,19 @@
 
 This project reproduces the main classification and BERT entailment experiments in [Jin et al. (2020)](https://ojs.aaai.org/index.php/AAAI/article/view/6311) and tests whether the attack generalises to new text-classification tasks. The runs use TextAttack 0.3.10 with up to 50 replacement candidates and a minimum word-embedding cosine similarity of 0.7. The paired ablations remove only the sentence-similarity constraint.
 
+## Quick verification for markers
+
+From the repository root, use PowerShell with Python 3.11 on `PATH` to view the final Type 2 aggregates and exercise the import, evaluation and judge workflows on their bundled test fixtures. This path works with the Python standard library and the files in this checkout.
+
+```powershell
+Import-Csv results/type2_final_attacks.csv | Format-Table dataset,examples,eligible,successful,attack_success_rate_percent
+Import-Csv results/type2_final_judge.csv | Format-Table dataset,judged,accepted,rejected,uncertain
+python -m unittest discover -s tests -p 'test_type2*.py'
+python -m unittest discover -s tests -p 'test_judge*.py'
+```
+
+Check that attack success rates are 322/390 (82.56%) for TMDb and 351/478 (73.43%) for synthetic reviews. The final judge accepted 31/50 and 21/50 sampled successful attacks, respectively. Full replay requires the authorised inputs and model assets described below.
+
 ## Setup
 
 The recorded attack environment uses Windows, Python 3.11, PyTorch 2.7.1 with CUDA 12.8, and an NVIDIA RTX 5060 Ti. Run the following in PowerShell from the repository root. Setup requires the Python 3.11 launcher, Git and internet access.
@@ -67,25 +80,33 @@ foreach ($dataset in 'poem','clinc150','news','scicite','environmental_claims') 
 }
 ```
 
-### Constructed sentiment pilots
+### Constructed sentiment datasets
 
-The two Type 2 pools comprise sentences collected through [TMDB](https://developer.themoviedb.org/docs/faq) and 500 synthetic movie-review sentences generated individually by a language model. The TMDB collector uses a locally configured `TMDB_API_READ_ACCESS_TOKEN` or `TMDB_API_KEY`. A fresh collection can differ as the source changes. This project uses the TMDB API but is not endorsed or certified by TMDB.
+The Type 2 pools contain 500 source-derived TMDb passages and 500 synthetic movie-review sentences generated individually using a language model. The synthetic construction plan spans ten linguistic categories and balances 250 intended positive and 250 intended negative labels. The project record describes the synthetic labelling as independent. The intended labels were available in the workbook metadata tab, and both completed reviews matched all 500 intended labels. Whether either reviewer consulted that tab is unknown.
+
+The TMDb collector uses a locally configured `TMDB_API_READ_ACCESS_TOKEN` or `TMDB_API_KEY`. A fresh collection can differ as the source changes. This project uses the TMDB API but is not endorsed or certified by TMDB. [TMDb API FAQ](https://developer.themoviedb.org/docs/faq)
 
 ```powershell
 & $python scripts/collect_tmdb_reviews.py --output private/tmdb_collection --target 500
 ```
 
-The following commands use locally held, authorised review exports for that collection. The frozen TMDB pilot required two matching human labels. The frozen generated pilot used one completed human review per eligible sentence. Both used a pinned Rotten Tomatoes sentiment checkpoint. The release contains aggregate results and the import pipeline. Exact pilot replay requires the corresponding original candidate files and completed human review exports.
+The 8 November final evaluation required two matching completed human labels per retained sentence in both pools. TMDb uses all 412 agreed passages and excludes 88 disagreements without adjudication. The runner uses its internal `TYPE2_PILOT_` tag and explicit `--allow-partial` switch for this agreed subset. Synthetic reviews use the full 500 agreed rows. Both evaluations use the pinned Rotten Tomatoes sentiment checkpoint. The frozen exports contain no recorded ambiguity flags.
+
+Start with the authorised original candidate, metadata and review exports and run import and preparation in this checkout. Prepared manifests bind to the checkout's execution configuration. Replace the example `private/` paths with paths to the files held locally.
 
 ```powershell
 & $python -c "from huggingface_hub import snapshot_download; snapshot_download('textattack/bert-base-uncased-rotten-tomatoes', revision='2aeb2b03a543f2eb1f203ca40676fbaf27a3d4fd', cache_dir='data/cache/textattack', allow_patterns=['config.json','pytorch_model.bin','special_tokens_map.json','tokenizer_config.json','vocab.txt'])"
 & $python -c "from textattack.shared import WordEmbedding; from textattack.constraints.semantics.sentence_encoders import UniversalSentenceEncoder; WordEmbedding.counterfitted_GLOVE_embedding(); UniversalSentenceEncoder().encode(['A short movie review.'])"
-& $python scripts/import_type2_reviews.py --samples private/tmdb_collection/samples.csv --metadata private/tmdb_collection/sample_metadata.csv --reviews private/tmdb_reviewer_1.csv private/tmdb_reviewer_2.csv --output-dir outputs/tmdb_import --min-reviewers 2
-& $python scripts/prepare_type2_evaluation.py --import-dir outputs/tmdb_import --output-dir data/processed/tmdb_pilot --experiment-tag TYPE2_PILOT_TMDB --min-reviewers 2 --allow-partial
-& $python scripts/run_type2.py --dataset-dir data/processed/tmdb_pilot --output-dir outputs/tmdb_reviewed_pilot --allow-partial --dry-run
+& $python scripts/import_type2_reviews.py --samples private/tmdb_collection/samples.csv --metadata private/tmdb_collection/sample_metadata.csv --reviews private/tmdb_reviewer_1.csv private/tmdb_reviewer_2.csv --output-dir outputs/tmdb_final_import --min-reviewers 2
+& $python scripts/prepare_type2_evaluation.py --import-dir outputs/tmdb_final_import --output-dir data/processed/tmdb_agreed --experiment-tag TYPE2_PILOT_TMDB_AGREED_20261108 --min-reviewers 2 --allow-partial
+& $python scripts/run_type2.py --dataset-dir data/processed/tmdb_agreed --output-dir outputs/tmdb_final --allow-partial --dry-run
+
+& $python scripts/import_type2_reviews.py --samples private/synthetic_collection/samples.csv --metadata private/synthetic_collection/sample_metadata.csv --reviews private/synthetic_reviewer_1.csv private/synthetic_reviewer_2.csv --output-dir outputs/synthetic_final_import --min-reviewers 2
+& $python scripts/prepare_type2_evaluation.py --import-dir outputs/synthetic_final_import --output-dir data/processed/synthetic_final --experiment-tag TYPE2_SYNTHETIC_FINAL_20261108 --min-reviewers 2
+& $python scripts/run_type2.py --dataset-dir data/processed/synthetic_final --output-dir outputs/synthetic_final --dry-run
 ```
 
-The asset commands use the cache environment variables set by `setup.ps1` in the current shell. Remove `--dry-run` to run the attack after verification. To evaluate a generated-review pilot, use its authorised candidate and reviewer exports and set `--min-reviewers 1` at both import and preparation. The semantic-similarity analysis uses the same `analyze_type1.py` command.
+The asset commands use the cache environment variables set by `setup.ps1` in the current shell. The dry runs should report 412 TMDb and 500 synthetic rows. Remove `--dry-run` to execute the attacks. Download USE-Large v3 with `scripts/download_use_large_v3.ps1` and run `scripts/analyze_type1.py --run-dir` on each completed attack directory before preparing the judge inputs.
 
 ## Semantic evaluation
 
@@ -120,17 +141,54 @@ foreach ($phase in 'development','control','final') {
 & $python scripts/llm_judge.py summarize --prepared outputs/type1_judge --evaluation outputs/type1_judgements --report-dir outputs/type1_judge_report --phase final
 ```
 
-The Type 2 pilots use the same protocol with [their own source configuration](notes/judge_sources_type2.json). The data, request bundles, raw responses and review keys are held locally.
+### Final Type 2 judge run
+
+Type 2 uses the same protocol. Its source configuration points to the two final attack directories. The judge selected five development and 50 final successful pairs per dataset with seed 8240. Three protocol controls bring the plan to 339 requests at three requests per pair. [Type 2 source configuration](notes/judge_sources_type2.json)
+
+```powershell
+& $python scripts/llm_judge.py prepare --sources notes/judge_sources_type2.json --output-dir outputs/type2_judge --seed 8240 --development-per-dataset 5 --final-per-dataset 50 --audit-size 50
+& $python scripts/llm_judge.py export-h100 --prepared outputs/type2_judge --output-dir outputs/type2_h100 --model Qwen/Qwen3.8-27B --model-revision 1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0 --include-final
+```
+
+In the exported bundle directory on the H100, run the development, control and final phases in order.
+
+```powershell
+py -3.11 .\h100_judge.py setup
+.\.venv\Scripts\python.exe .\h100_judge.py run --phase development --max-jobs 30
+.\.venv\Scripts\python.exe .\h100_judge.py run --phase control --max-jobs 9
+.\.venv\Scripts\python.exe .\h100_judge.py run --phase final --max-jobs 300
+```
+
+Copy the returned `results` directory into the original `outputs/type2_h100` bundle. From the repository root, audit the original responses and prepare any format retries.
+
+```powershell
+& $python scripts/judge_repair.py prepare --prepared outputs/type2_judge --pack outputs/type2_h100 --results outputs/type2_h100/results --output-dir outputs/type2_format_audit
+```
+
+For the frozen run's 54 format retries, copy `outputs/type2_format_audit/judge_format_repair` into the original H100 bundle. From that bundle's root, run the repair with its pinned model environment.
+
+```powershell
+$repairPlan = Get-Content -Raw .\judge_format_repair\repair_plan.json | ConvertFrom-Json
+.\.venv\Scripts\python.exe -I .\judge_format_repair\hf_judge_repair.py --job-root . --max-jobs (@($repairPlan.jobs).Count)
+```
+
+Copy the resulting `judge_format_repair/results` directory back under `outputs/type2_format_audit/judge_format_repair`. If preparation reports zero requests needing generation, omit the H100 retry step and omit the --retry-results argument below. The import writes phase summaries under `outputs/type2_judge_verified/reports/`. The project holds the data, bundles and raw responses locally.
+
+```powershell
+& $python scripts/judge_repair.py import --prepared outputs/type2_judge --pack outputs/type2_h100 --results outputs/type2_h100/results --repair-dir outputs/type2_format_audit --retry-results outputs/type2_format_audit/judge_format_repair/results --output-dir outputs/type2_judge_verified
+```
 
 ## Results
 
-The tables in [results/](results/) describe the verified 3 November 2026 snapshot.
+The tables in [results/](results/) retain the 3 November 2026 results and include the verified 8 November 2026 Type 2 final evaluation.
 
 - [Original-data comparison](results/original_replication.csv) covers all 18 main comparisons. Clean accuracy matched the paper to one decimal place in 14 settings. The BERT/Fake News baseline remained 59.5% versus 97.8% in the paper. The legacy and modern loaders agreed on all 1,000 released Fake News inputs.
 - [Sentence-similarity ablations](results/sentence_ablation.csv) cover the two paired BERT experiments. Their cosine comparison uses inputs that both variants attacked successfully.
 - [Type 1 attack results](results/type1_attacks.csv) cover the five additional datasets. The [class-level breakdown](results/type1_per_class.csv) covers SciCite and Environmental Claims.
 - [Type 1 judge results](results/type1_judge.csv) count 88 accepted, 120 rejected and 42 uncertain out of 250 sampled prediction changes. These are judge decisions on a balanced sample of successful attacks. The [judge checks](results/type1_judge_checks.json) record control outcomes and response validation.
-- [Type 2 attack results](results/type2_pilots.csv) cover the 212 agreed TMDB examples and the 235 reviewed generated examples in the partial pilots. [TMDB agreement](results/type2_review_agreement.csv) is measured on 250 overlapping reviews before adjudication. Type 2 semantic results are pending in this snapshot.
+- The 3 November Type 2 pilots covered 212 agreed TMDb and 235 reviewed synthetic examples. The TMDb pilot agreement used 250 overlapping reviews. [Pilot attacks](results/type2_pilots.csv), [pilot agreement](results/type2_review_agreement.csv)
+- The final Type 2 evaluations cover 412 agreed TMDb passages and all 500 reviewed synthetic sentences. Both pools have 500 overlapping reviews. Agreement was 82.4% (Cohen's kappa 0.596) for TMDb and 100% (kappa 1.000) for synthetic reviews. [Final attacks](results/type2_final_attacks.csv), [per-class results](results/type2_final_per_class.csv), [annotation checks](results/type2_final_checks.json)
+- The final Type 2 judge accepted 31 TMDb and 21 synthetic attacks for meaning and label preservation out of 50 sampled successful attacks per dataset, with zero uncertain decisions. All three controls passed. The 339 usable responses include 285 original responses and 54 format-only retries with the pinned model. These rates describe the selected successful attacks. The separate human audit of adversarial pairs has zero completed reviews. [Final judge results](results/type2_final_judge.csv), [judge checks](results/type2_final_checks.json)
 
 Clean and after-attack accuracy use all examples. Attack success rate divides successful attacks by the number of initially correct examples. Mean changed words and post-hoc USE-Large cosine are calculated over successful attacks. USE-Large cosine is an automatic similarity measure. The paper-reported similarity in the original-data comparison uses a separate procedure.
 
