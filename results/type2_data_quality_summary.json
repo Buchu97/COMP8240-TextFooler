@@ -1,0 +1,125 @@
+{
+  "tmdb_full_clarity_screen": {
+    "reviewer_id": "1",
+    "recorded_dates": [
+      "2026-11-09"
+    ],
+    "previous_rows": 50,
+    "additional_rows": 362,
+    "counts": {
+      "clear": 293,
+      "mixed": 84,
+      "neutral": 13,
+      "plot_only": 14,
+      "uncertain": 8
+    },
+    "saved_attack_outcomes_by_clarity": {
+      "clear": {
+        "passages": 293,
+        "eligible": 287,
+        "successful": 234,
+        "failed": 53,
+        "skipped": 6,
+        "labels": {
+          "negative": 57,
+          "positive": 236
+        },
+        "attack_success_rate_percent": 81.53310104529616,
+        "clean_accuracy_percent": 97.95221843003414,
+        "after_attack_accuracy_percent": 18.088737201365188,
+        "outcomes_by_original_polarity": {
+          "negative": {
+            "eligible": 55,
+            "successful": 26
+          },
+          "positive": {
+            "eligible": 232,
+            "successful": 208
+          }
+        },
+        "equal_polarity_attack_success_rate_percent": 68.46394984326018
+      },
+      "other": {
+        "passages": 119,
+        "eligible": 103,
+        "successful": 88,
+        "failed": 15,
+        "skipped": 16,
+        "labels": {
+          "negative": 59,
+          "positive": 60
+        },
+        "attack_success_rate_percent": 85.4368932038835,
+        "clean_accuracy_percent": 86.5546218487395,
+        "after_attack_accuracy_percent": 12.605042016806722
+      }
+    },
+    "scope": "All 412 originally agreed passages. Sensitivity results filter saved outcomes using clarity and retain the original sentiment labels.",
+    "full_pool_comparison": {
+      "outcomes_by_original_polarity": {
+        "negative": {
+          "eligible": 110,
+          "successful": 69
+        },
+        "positive": {
+          "eligible": 280,
+          "successful": 253
+        }
+      },
+      "equal_polarity_attack_success_rate_percent": 76.54220779220779
+    }
+  },
+  "synthetic_blinded_rereview": {
+    "reviewer_ids": [
+      "1",
+      "2"
+    ],
+    "recorded_dates": [
+      "2026-11-09"
+    ],
+    "sample_size": 100,
+    "pool_size": 500,
+    "sampling": "Ten per category. Five per intended label within category. Orders independently shuffled.",
+    "matched_between_reviewers": 100,
+    "agreement_percent": 100.0,
+    "cohens_kappa": 1.0,
+    "contingency": [
+      {
+        "reviewer_1": "negative",
+        "reviewer_2": "negative",
+        "count": 50
+      },
+      {
+        "reviewer_1": "positive",
+        "reviewer_2": "positive",
+        "count": 50
+      }
+    ],
+    "reviewer_1_matches_original_label": 100,
+    "reviewer_2_matches_original_label": 100,
+    "both_match_original_label": 100,
+    "scope": "A stratified re-review by the original reviewers. Intended labels and previous answers were omitted from the packets."
+  },
+  "verification": {
+    "tmdb_rows_with_crlf_normalization_only": 12,
+    "review_dates_by_file": {
+      "reviewer_1_synthetic_sentiment.csv": [
+        "2026-11-09"
+      ],
+      "reviewer_1_tmdb_clarity.csv": [
+        "2026-11-09"
+      ],
+      "reviewer_2_synthetic_sentiment.csv": [
+        "2026-11-09"
+      ]
+    },
+    "archive_sha256": "d4f91710d833e425b6ebff096696233d630239642cc2a773c4a1df52ffb0f6d8",
+    "private_mapping_sha256": "66d55ebdf4e20503df80c2c64b018c2ed828e58eb6412cfc80d92a80a1591b4f",
+    "tmdb_outcomes_sha256": "52ae930cd8349ad2d93e2310baf620c4ed8268f865475f6f4a591fa66b1ce512",
+    "returned_csv_sha256": {
+      "reviewer_1_synthetic_sentiment.csv": "2a9fe693d293bee048813d188a5faac1e7e0088050a9bde071650d69511d469d",
+      "reviewer_1_tmdb_clarity.csv": "d36ad837cc49194ea7614d785e90eacd0917abd00c59c2e88432c2b519d706c7",
+      "reviewer_2_synthetic_sentiment.csv": "dc57f71f378739e7886c1a9104719cc71593745263266c910b51554b4bb580d3"
+    }
+  }
+}

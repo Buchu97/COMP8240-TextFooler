@@ -60,6 +60,11 @@ class JudgeWorkflowTests(unittest.TestCase):
             self.assertEqual(result['raw_attack_asr_percent'], 87.5)
             self.assertIsNone(result['full_population_judge_accepted_asr_percent'])
             self.assertEqual(report['human_comparison']['completed_reviews'], 0)
+            diagnostics = report['protocol_diagnostics']['reviews']
+            self.assertEqual(diagnostics['original_label_disagreements'], 0)
+            self.assertEqual(diagnostics['meaning_yes'], 4)
+            self.assertEqual(diagnostics['paired_vs_single_label_preservation']['n'], 5)
+            self.assertEqual(diagnostics['paired_vs_single_label_preservation']['agreement_percent'], 100)
             audit = judge_data.read_csv(prepared / 'human_review.csv')
             chosen = next(r for r in audit if r['pair_id'] != bad_pair)
             chosen.update(meaning_preserved='yes', label_a='positive', label_b='positive',
@@ -81,6 +86,25 @@ class JudgeWorkflowTests(unittest.TestCase):
         self.assertAlmostEqual(result['cohens_kappa'], 0)
         self.assertEqual(result['unresolved'], 1)
         self.assertIsNone(self.module.agreement([('yes', 'yes')])['cohens_kappa'])
+
+    def test_protocol_diagnostics_exclude_uncertain_single_text_labels_from_agreement(self):
+        def pair(original, edited, paired, status, correct):
+            return dict(original_judge_label=original, perturbed_judge_label=edited,
+                        same_task_label=paired, meaning_preserved='yes',
+                        status=status, original_label_matches_gold=correct)
+
+        rows = [
+            pair('positive', 'positive', 'yes', 'accepted', True),
+            pair('negative', 'positive', 'yes', 'uncertain', False),
+            pair('positive', protocol.UNCERTAIN, 'yes', 'uncertain', True),
+        ]
+        result = self.module.protocol_diagnostics(rows)
+        self.assertEqual(result['original_label_disagreements'], 1)
+        self.assertEqual(result['uncertain_from_original_label'], 1)
+        self.assertEqual(result['meaning_yes'], 3)
+        self.assertEqual(result['paired_vs_single_label_preservation']['n'], 2)
+        self.assertEqual(result['paired_vs_single_label_preservation']['unresolved'], 1)
+        self.assertEqual(result['paired_vs_single_label_preservation']['agreement_percent'], 50)
 
 
 if __name__ == '__main__':

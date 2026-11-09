@@ -1,0 +1,60 @@
+{
+  "recorded_creation_date": "2026-10-06",
+  "language": "English",
+  "domain": "movie-review sentiment",
+  "drafting_method": "Individual language-model drafting",
+  "recorded_model_revision": null,
+  "generator_script": null,
+  "usage": "Evaluation only",
+  "frozen_rows": 500,
+  "unique_texts": 500,
+  "ordering": "Ascending SHA-256 of UTF-8 text",
+  "categories": {
+    "contrast": {
+      "negative": 25,
+      "positive": 25
+    },
+    "dialogue_and_humour": {
+      "negative": 25,
+      "positive": 25
+    },
+    "emotional_response": {
+      "negative": 25,
+      "positive": 25
+    },
+    "genre_expectations": {
+      "negative": 25,
+      "positive": 25
+    },
+    "idiom_and_understatement": {
+      "negative": 25,
+      "positive": 25
+    },
+    "negation": {
+      "negative": 25,
+      "positive": 25
+    },
+    "overall_impression": {
+      "negative": 25,
+      "positive": 25
+    },
+    "performances": {
+      "negative": 25,
+      "positive": 25
+    },
+    "story_and_pacing": {
+      "negative": 25,
+      "positive": 25
+    },
+    "visuals_and_sound": {
+      "negative": 25,
+      "positive": 25
+    }
+  },
+  "canonical_and_frozen_text_and_label_records_match": true,
+  "sha256": {
+    "canonical_samples": "727ac612063b4e707de297673b4e62774abf59d7bab4519df5eaff99c7748318",
+    "canonical_sample_metadata": "126c8b4edcdda3fd12a046c544b9fb3a7a9d8cc3da7b6e9e0ca6ed7e7d96cc21",
+    "frozen_evaluation_csv": "4e756d7cce2b8f20d969474ec67133b589a5ff01c3f1206b0f81e0ba6518ccdc"
+  }
+}

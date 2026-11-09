@@ -1,0 +1,111 @@
+{
+  "scope": "Comparison of Qwen outputs from the same judge. Unresolved decisions are counted separately.",
+  "type1": {
+    "final_pairs": 250,
+    "outcomes": {
+      "accepted": 88,
+      "rejected": 120,
+      "uncertain": 42
+    },
+    "paired_vs_single_agreement": {
+      "resolved": 233,
+      "agreed": 187,
+      "unresolved": 17
+    },
+    "datasets": {
+      "clinc150": {
+        "meaning_yes": 17,
+        "original_label_disagreements": 3,
+        "uncertain_from_original_label": 3,
+        "paired_vs_single_label_preservation": {
+          "n": 45,
+          "unresolved": 5,
+          "agreement_percent": 60.0,
+          "cohens_kappa": 0.24299065420560748
+        }
+      },
+      "environmental_claims": {
+        "meaning_yes": 27,
+        "original_label_disagreements": 5,
+        "uncertain_from_original_label": 5,
+        "paired_vs_single_label_preservation": {
+          "n": 48,
+          "unresolved": 2,
+          "agreement_percent": 93.75,
+          "cohens_kappa": 0.3684210526315792
+        }
+      },
+      "news": {
+        "meaning_yes": 19,
+        "original_label_disagreements": 19,
+        "uncertain_from_original_label": 19,
+        "paired_vs_single_label_preservation": {
+          "n": 47,
+          "unresolved": 3,
+          "agreement_percent": 87.2340425531915,
+          "cohens_kappa": 0.19886363636363633
+        }
+      },
+      "poem": {
+        "meaning_yes": 23,
+        "original_label_disagreements": 7,
+        "uncertain_from_original_label": 7,
+        "paired_vs_single_label_preservation": {
+          "n": 45,
+          "unresolved": 5,
+          "agreement_percent": 68.88888888888889,
+          "cohens_kappa": 0.22222222222222227
+        }
+      },
+      "scicite": {
+        "meaning_yes": 28,
+        "original_label_disagreements": 7,
+        "uncertain_from_original_label": 7,
+        "paired_vs_single_label_preservation": {
+          "n": 48,
+          "unresolved": 2,
+          "agreement_percent": 89.58333333333334,
+          "cohens_kappa": 0.0
+        }
+      }
+    },
+    "judged_pairs_sha256": "c215d0190990a31463777612785d39b50e9e61699a46e2ff1c09d47ac358a21e"
+  },
+  "type2": {
+    "final_pairs": 100,
+    "outcomes": {
+      "accepted": 52,
+      "rejected": 48
+    },
+    "paired_vs_single_agreement": {
+      "resolved": 94,
+      "agreed": 85,
+      "unresolved": 6
+    },
+    "datasets": {
+      "synthetic_reviews": {
+        "meaning_yes": 21,
+        "original_label_disagreements": 0,
+        "uncertain_from_original_label": 0,
+        "paired_vs_single_label_preservation": {
+          "n": 44,
+          "unresolved": 6,
+          "agreement_percent": 86.36363636363636,
+          "cohens_kappa": 0.0
+        }
+      },
+      "tmdb_reviews": {
+        "meaning_yes": 31,
+        "original_label_disagreements": 0,
+        "uncertain_from_original_label": 0,
+        "paired_vs_single_label_preservation": {
+          "n": 50,
+          "unresolved": 0,
+          "agreement_percent": 94.0,
+          "cohens_kappa": 0.5454545454545451
+        }
+      }
+    },
+    "judged_pairs_sha256": "b67d87c2284b0815a036941fb8fc6b77b237edecef4ae8cdfe3df9f425d003e2"
+  }
+}

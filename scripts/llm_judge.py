@@ -39,6 +39,25 @@ def agreement(decisions):
             'cohens_kappa': (observed - chance) / (1 - chance) if n and chance < 1 else None}
 
 
+def protocol_diagnostics(rows):
+    paired_and_single = []
+    for row in rows:
+        original, edited = row['original_judge_label'], row['perturbed_judge_label']
+        if UNCERTAIN in (original, edited):
+            single = 'uncertain'
+        else:
+            single = 'yes' if original == edited else 'no'
+        paired_and_single.append((row['same_task_label'], single))
+    return {
+        'meaning_yes': sum(row['meaning_preserved'] == 'yes' for row in rows),
+        'original_label_disagreements': sum(not row['original_label_matches_gold'] for row in rows),
+        'uncertain_from_original_label': sum(
+            row['status'] == 'uncertain' and not row['original_label_matches_gold'] for row in rows
+        ),
+        'paired_vs_single_label_preservation': agreement(paired_and_single),
+    }
+
+
 def human_comparison(prepared, human_review, pairs_by_id, judged_by_id, spaces):
     key = read_json(Path(prepared) / 'audit_key.json')
     rows = read_csv(human_review)
@@ -150,10 +169,11 @@ def summarize(prepared, evaluation, report_dir, phase='final', human_review=None
     by_id = {p['pair_id']: p for p in judged}
     human = human_comparison(prepared, human_review or prepared / 'human_review.csv',
                              {p['pair_id']: p for p in pairs}, by_id, spaces)
-    datasets = {}
+    datasets, diagnostics = {}, {}
     for name in sorted({p['dataset'] for p in selected if not p['control']}):
         rows = [p for p in judged if p['dataset'] == name and not p['control']]
         complete = [p for p in rows if p['status'] in ('accepted', 'rejected', 'uncertain')]
+        diagnostics[name] = protocol_diagnostics(complete)
         counts = Counter(p['status'] for p in rows)
         high = [p for p in complete if p['use_cosine'] is not None and p['use_cosine'] >= use_threshold]
         source = manifest['sources'][name]
@@ -173,6 +193,7 @@ def summarize(prepared, evaluation, report_dir, phase='final', human_review=None
     report = {'phase': phase, 'prepared_manifest_sha256': file_digest(prepared / 'manifest.json'),
               'evaluation_manifest_sha256': file_digest(evaluation / 'evaluation.json'),
               'request_artifacts_sha256': artifacts, 'datasets': datasets, 'human_comparison': human,
+              'protocol_diagnostics': diagnostics,
               'controls': {'selected': len(controls), 'judged': len(control_ready),
                            'passed_pair_checks': sum(p['meaning_preserved'] == p['expected_meaning']
                                and p['same_task_label'] == p['expected_same_label'] for p in control_ready)},
