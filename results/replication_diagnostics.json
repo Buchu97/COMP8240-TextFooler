@@ -1,0 +1,44 @@
+{
+  "bert_fake_news": {
+    "clean_confusion_rows_gold_columns_predicted": [
+      [
+        95,
+        405
+      ],
+      [
+        0,
+        500
+      ]
+    ],
+    "successful_attacks_by_gold_label": {
+      "0": 89,
+      "1": 4
+    },
+    "class_1_score_roc_auc": 0.991566,
+    "best_correct_same_sample_threshold": 950,
+    "scope": "The threshold sweep selects and scores on the same rows."
+  },
+  "bert_imdb": {
+    "eligible_inputs": 909,
+    "authors_ranking_positions": 226175,
+    "textattack_word_positions_before_stopword_filter": 211686,
+    "textattack_ranking_positions": 111338,
+    "mean_ranking_position_difference": 126.33333333333333,
+    "scope": "Ranking probes on matched eligible inputs. Candidate scoring and physical forward calls are excluded."
+  },
+  "summary_sha256": {
+    "bert_fake_news": "80ba2a654da75a818be45b107dc6b39bc97857a0c939084aec0bf6f7f94bbede",
+    "bert_imdb": "3d865a707468b03eeffd713b013e832b0e23a4532a2d370e5465ceb5755214ba"
+  },
+  "bert_fake_news_preprocessing": {
+    "rows": 1000,
+    "correct_after_attack_cleaner": 595,
+    "correct_without_attack_cleaner": 999,
+    "errors_corrected": 404,
+    "new_errors": 0,
+    "token_limit": 256,
+    "released_input_sha256": "c592523683b4ede90b367b094d778c74f5ec175e7840ae9cae29620a7a82b433",
+    "model_state_sha256": "074575c5c009f2aca8e4c8570c31dacb2b5bde251f4ed2de81806103194f5792",
+    "scope": "Clean inference only. The alternate preprocessing was not used for an attack run."
+  }
+}

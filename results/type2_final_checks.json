@@ -37,6 +37,8 @@
     },
     "usable_responses": 339,
     "pending_requests": 0,
-    "human_semantic_reviews_completed": 0
+    "human_semantic_reviews_completed": 50,
+    "human_semantic_review_date": "2026-11-09",
+    "human_audit_aggregate": "type2_human_audit.json"
   }
 }

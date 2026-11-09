@@ -9,11 +9,12 @@ From the repository root, use PowerShell with Python 3.11 on `PATH` to view the 
 ```powershell
 Import-Csv results/type2_final_attacks.csv | Format-Table dataset,examples,eligible,successful,attack_success_rate_percent
 Import-Csv results/type2_final_judge.csv | Format-Table dataset,judged,accepted,rejected,uncertain
+(Get-Content -Raw results/type2_human_audit.json | ConvertFrom-Json).attack_pair_audit.meaning
 python -m unittest discover -s tests -p 'test_type2*.py'
 python -m unittest discover -s tests -p 'test_judge*.py'
 ```
 
-Check that attack success rates are 322/390 (82.56%) for TMDb and 351/478 (73.43%) for synthetic reviews. The final judge accepted 31/50 and 21/50 sampled successful attacks, respectively. Full replay requires the authorised inputs and model assets described below.
+Attack success rates are 322/390 (82.56%) for TMDb and 351/478 (73.43%) for synthetic reviews. The final judge accepted 31/50 and 21/50 sampled successful attacks, respectively. On the separate 50-pair human audit, the judge and reviewer agreed on meaning preservation in 39 cases. The five-example BERT/MR run below is the smallest replay using the released source data and a real model. Exact Type 2 replay requires authorised review exports and model assets.
 
 ## Setup
 
@@ -53,6 +54,12 @@ $modelNames = @($catalog.PSObject.Properties.Name)
 ```
 
 The suite covers 15 classification runs, three BERT entailment runs and two BERT ablations. The authors' [checkpoint note](https://github.com/jind11/TextFooler/issues/47#issuecomment-955085106) explains the missing ESIM and InferSent settings. Transfer attacks and adversarial training are outside this replication.
+
+Recount the BERT/Fake News baseline and the BERT/IMDb ranking probes from completed runs. The optional preprocessing comparison also runs both clean-inference conditions with the same Fake News checkpoint and inputs. The [released attack](https://github.com/jind11/TextFooler/blob/6a56cb10f1055e00a8fbc6882f289e91cfe60f4e/attack_classification.py#L464-L467) calls the generic cleaner by default. The [Fake News training reader](https://github.com/jind11/TextFooler/blob/6a56cb10f1055e00a8fbc6882f289e91cfe60f4e/BERT/run_classifier.py#L404-L429) skips it.
+
+```powershell
+& $python scripts/replication_diagnostics.py --runs outputs/replication --authors-data repo/TextFooler-official/data --compare-fake-preprocessing
+```
 
 ### BERT/AG News word-similarity sensitivity
 
@@ -191,18 +198,25 @@ Copy the resulting `judge_format_repair/results` directory back under `outputs/t
 & $python scripts/judge_repair.py import --prepared outputs/type2_judge --pack outputs/type2_h100 --results outputs/type2_h100/results --repair-dir outputs/type2_format_audit --retry-results outputs/type2_format_audit/judge_format_repair/results --output-dir outputs/type2_judge_verified
 ```
 
+With the completed reviewer CSV and verified local judge responses, the comparison can be recalculated without running Qwen again.
+
+```powershell
+& $python scripts/llm_judge.py summarize --prepared outputs/type2_judge --evaluation outputs/type2_judge_verified/evaluations/final --phase final --human-review private/type2_attack_pair_review.csv --report-dir outputs/type2_human_comparison
+```
+
 ## Results
 
-The tables in [results/](results/) retain the 3 November 2026 results and include the verified 8 November 2026 Type 2 final evaluation.
+The tables in [results/](results/) include the final Type 2 evaluation frozen on 8 November 2026 and the two human audits recorded on 9 November 2026.
 
-- [Original-data comparison](results/original_replication.csv) covers all 18 main comparisons. Clean accuracy matched the paper to one decimal place in 14 settings. The BERT/Fake News baseline remained 59.5% versus 97.8% in the paper. The legacy and modern loaders agreed on all 1,000 released Fake News inputs.
+- [Original-data comparison](results/original_replication.csv) covers all 18 main comparisons. Clean accuracy matched the paper to one decimal place in 14 settings. BERT/Fake News reached 59.5% clean accuracy with the released attack cleaner, versus 97.8% in the paper. Bypassing that cleaner raised clean accuracy to 99.9% on the same rows and checkpoint. The after-attack result applies to the cleaned inputs. The [replication diagnostics](results/replication_diagnostics.json) also count the BERT/IMDb ranking probes under both procedures.
 - [BERT/AG News threshold check](results/bert_ag_word_threshold.json) records the separate paired run. After-attack accuracy was 29.8% at 0.7 and 11.0% at 0.5, compared with 12.5% in the paper. Clean predictions matched on all 1,000 inputs.
 - [Sentence-similarity ablations](results/sentence_ablation.csv) cover the two paired BERT experiments. Their cosine comparison uses inputs that both variants attacked successfully.
 - [Type 1 attack results](results/type1_attacks.csv) cover the five additional datasets. The [class-level breakdown](results/type1_per_class.csv) covers SciCite and Environmental Claims.
 - [Type 1 judge results](results/type1_judge.csv) count 88 accepted, 120 rejected and 42 uncertain out of 250 sampled prediction changes. These are judge decisions on a balanced sample of successful attacks. The [judge checks](results/type1_judge_checks.json) record control outcomes and response validation.
 - The 3 November Type 2 pilots covered 212 agreed TMDb and 235 reviewed synthetic examples. The TMDb pilot agreement used 250 overlapping reviews. [Pilot attacks](results/type2_pilots.csv), [pilot agreement](results/type2_review_agreement.csv)
 - The final Type 2 evaluations cover 412 agreed TMDb passages and all 500 reviewed synthetic sentences. Both pools have 500 overlapping reviews. Agreement was 82.4% (Cohen's kappa 0.596) for TMDb and 100% (kappa 1.000) for synthetic reviews. [Final attacks](results/type2_final_attacks.csv), [per-class results](results/type2_final_per_class.csv), [annotation checks](results/type2_final_checks.json)
-- The final Type 2 judge accepted 31 TMDb and 21 synthetic attacks for meaning and label preservation out of 50 sampled successful attacks per dataset, with zero uncertain decisions. All three controls passed. The 339 usable responses include 285 original responses and 54 format-only retries with the pinned model. These rates describe the selected successful attacks. The separate human audit of adversarial pairs has zero completed reviews. [Final judge results](results/type2_final_judge.csv), [judge checks](results/type2_final_checks.json)
+- The final Type 2 judge accepted 31 TMDb and 21 synthetic attacks for meaning and label preservation out of 50 sampled successful attacks per dataset, with zero uncertain decisions. All three controls passed. The 339 usable responses include 285 original responses and 54 format-only retries with the pinned model. [Final judge results](results/type2_final_judge.csv), [judge checks](results/type2_final_checks.json)
+- One reviewer and Qwen agreed on meaning preservation for 39 of 50 sampled Type 2 attack pairs (78%, Cohen's kappa 0.56). A second reviewer rated 40 of 50 sampled TMDb passages as clear, six as mixed, three as neutral and one as plot-only. The release contains aggregate audit results. Reviewer exports, source identifiers and pair-level judgments are held separately. [Type 2 human audits](results/type2_human_audit.json)
 
 Clean and after-attack accuracy use all examples. Attack success rate divides successful attacks by the number of initially correct examples. Mean changed words and post-hoc USE-Large cosine are calculated over successful attacks. USE-Large cosine is an automatic similarity measure. The paper-reported similarity in the original-data comparison uses a separate procedure.
 

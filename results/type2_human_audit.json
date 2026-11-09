@@ -1,0 +1,129 @@
+{
+  "tmdb_passage_audit": {
+    "reviewer_id": "1",
+    "recorded_date": "2026-11-09",
+    "sample_size": 50,
+    "population_size": 412,
+    "seed": 8240,
+    "counts": {
+      "clear": 40,
+      "mixed": 6,
+      "neutral": 3,
+      "plot_only": 1
+    },
+    "attack_results_by_clarity": {
+      "clear": {
+        "passages": 40,
+        "eligible": 40,
+        "successful": 37,
+        "skipped": 0
+      },
+      "mixed_neutral_or_plot_only": {
+        "passages": 10,
+        "eligible": 9,
+        "successful": 7,
+        "skipped": 1
+      }
+    }
+  },
+  "attack_pair_audit": {
+    "reviewer_id": "2",
+    "recorded_date": "2026-11-09",
+    "sample_sizes": {
+      "synthetic_reviews": 25,
+      "tmdb_reviews": 25
+    },
+    "meaning": {
+      "resolved": 50,
+      "agreed": 39,
+      "unresolved": 0,
+      "agreement_percent": 78.0,
+      "cohens_kappa": 0.56,
+      "counts": [
+        {
+          "reviewer": "no",
+          "qwen": "no",
+          "pairs": 22
+        },
+        {
+          "reviewer": "no",
+          "qwen": "yes",
+          "pairs": 8
+        },
+        {
+          "reviewer": "yes",
+          "qwen": "no",
+          "pairs": 3
+        },
+        {
+          "reviewer": "yes",
+          "qwen": "yes",
+          "pairs": 17
+        }
+      ]
+    },
+    "sentiment_preservation": {
+      "resolved": 40,
+      "agreed": 38,
+      "unresolved": 10,
+      "agreement_percent": 95.0,
+      "cohens_kappa": 0.0,
+      "counts": [
+        {
+          "reviewer": "uncertain",
+          "qwen": "no",
+          "pairs": 2
+        },
+        {
+          "reviewer": "uncertain",
+          "qwen": "uncertain",
+          "pairs": 4
+        },
+        {
+          "reviewer": "uncertain",
+          "qwen": "yes",
+          "pairs": 4
+        },
+        {
+          "reviewer": "yes",
+          "qwen": "no",
+          "pairs": 2
+        },
+        {
+          "reviewer": "yes",
+          "qwen": "yes",
+          "pairs": 38
+        }
+      ]
+    },
+    "sentiment_classification": {
+      "resolved": 90,
+      "agreed": 90,
+      "unresolved": 10,
+      "agreement_percent": 100.0,
+      "cohens_kappa": 1.0
+    },
+    "edited_text_naturalness_mean_absolute_rating_difference": 0.58,
+    "meaning_agreement_by_dataset": {
+      "tmdb_reviews": {
+        "pairs": 25,
+        "agreed": 17,
+        "agreement_percent": 68.0
+      },
+      "synthetic_reviews": {
+        "pairs": 25,
+        "agreed": 22,
+        "agreement_percent": 88.0
+      }
+    }
+  },
+  "evidence_sha256": {
+    "submitted_archive": "b319f84f57ae29c2766c74a61aae127556c3b3b4240dc8c3f8841f159d55111f",
+    "tmdb_passage_review": "96cba980d375e36320fd8d56c27d254bddb0a9c2393697a93a318b92d2a0d891",
+    "human_attack_pair_review": "dd7e1bd0f05d37c49cab958d15b7f00d1b60d51310a588a1cdc806e125474dd2",
+    "qwen_judgments": "b67d87c2284b0815a036941fb8fc6b77b237edecef4ae8cdfe3df9f425d003e2",
+    "verified_comparison": "02a814464088f5c44029548b862fd57bfc71d5be78890961a43757c3193d9beb",
+    "tmdb_attack_outcomes": "52ae930cd8349ad2d93e2310baf620c4ed8268f865475f6f4a591fa66b1ce512",
+    "tmdb_passage_sample_manifest": "91509bfb70565ec56228321984a13a8c72d33f109e8dc50000b86d6de61e2d38"
+  }
+}
