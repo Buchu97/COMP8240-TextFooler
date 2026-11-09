@@ -1,0 +1,107 @@
+{
+  "lstm_ag": {
+    "dataset": "ag",
+    "model": "original-lstm-ag",
+    "replacement_candidates": 50,
+    "seed": 8240,
+    "evaluation_sha256": "bbef82ac99220668bc639b804427b07461d48a99e3aa1134b60dcdde833b168b",
+    "model_state_sha256": "fe78093fe46a39b50a31cd7c9a3a1722c46594f9923e1f2f5560ed35047a664f",
+    "clean_baseline_sha256": "b372034129995ed7d8b604854b7b8d087febeefdfd000410d9d12a15fea72247",
+    "matched_clean_predictions": 1000,
+    "published_clean_accuracy_percent": 91.3,
+    "published_after_attack_accuracy_percent": 3.8,
+    "runs": {
+      "0.7": {
+        "examples": 1000,
+        "eligible": 913,
+        "successful": 760,
+        "original_accuracy_percent": 91.3,
+        "after_attack_accuracy_percent": 15.3,
+        "attack_success_rate_percent": 83.24205914567361,
+        "mean_queries_eligible": 126.74370208105148,
+        "mean_perturbed_word_percent_successful": 21.77778514527884,
+        "summary_sha256": "22eb77f1294b7f46bf46909bbf226297a1f587c0849996e71e84ede40314d283",
+        "metadata_sha256": "1c9ccbaec1e01164d76479e4c239a24384232f5053aa891848e7cabe1d585429"
+      },
+      "0.5": {
+        "examples": 1000,
+        "eligible": 913,
+        "successful": 881,
+        "original_accuracy_percent": 91.3,
+        "after_attack_accuracy_percent": 3.2,
+        "attack_success_rate_percent": 96.49507119386638,
+        "mean_queries_eligible": 197.9145673603505,
+        "mean_perturbed_word_percent_successful": 18.133927618723263,
+        "summary_sha256": "16f0accd4ea22de28c2d8feb17da17fc21ba614fed0e6c6737e9d7c5138d9319",
+        "metadata_sha256": "43102ed7988b80c9fe5d819a9280831f821a0bf85fcd228c2eca0affe7dcc832"
+      }
+    },
+    "paired_initially_correct": {
+      "both_successful": 759,
+      "only_0_7_successful": 1,
+      "only_0_5_successful": 122,
+      "neither_successful": 31
+    },
+    "after_attack_accuracy_change_points": -12.1,
+    "signed_gap_to_paper_0_7_points": 11.5,
+    "signed_gap_to_paper_0_5_points": -0.6,
+    "example": {
+      "source_id": 405,
+      "prediction_at_0_7": "Sci/Tech",
+      "prediction_at_0_5": "Business",
+      "words_changed_at_0_5": 4,
+      "example_replacement": [
+        "security",
+        "guaranty"
+      ],
+      "replacement_cosine": 0.656385
+    }
+  },
+  "bert_mr": {
+    "dataset": "mr",
+    "model": "original-bert-mr",
+    "replacement_candidates": 50,
+    "seed": 8240,
+    "evaluation_sha256": "5b4bea174ec072a3f3c1cc75cae6d16eaf822969e674ebcdd166ecd317ae6e41",
+    "model_state_sha256": "51367ecd93ba8a823ddda98ec42c6d346986949748e6be059c240643a193b130",
+    "clean_baseline_sha256": "07f0ebc475873df871abfa911cb11338221cc9dba52fac12abc9e6da53c9e3e7",
+    "matched_clean_predictions": 1000,
+    "published_clean_accuracy_percent": 86.0,
+    "published_after_attack_accuracy_percent": 11.5,
+    "runs": {
+      "0.7": {
+        "examples": 1000,
+        "eligible": 904,
+        "successful": 656,
+        "original_accuracy_percent": 90.4,
+        "after_attack_accuracy_percent": 24.8,
+        "attack_success_rate_percent": 72.56637168141593,
+        "mean_queries_eligible": 63.155973451327434,
+        "mean_perturbed_word_percent_successful": 24.024899652124535,
+        "summary_sha256": "463d3e6c3c176db55fb216eae31197eb86f9d83eeda99c2eb483a90905c1f137",
+        "metadata_sha256": "ef225f70d3c989e131a7347c4679dd6b450debb03d9f5ff6fd17dfddf5cfffb6"
+      },
+      "0.5": {
+        "examples": 1000,
+        "eligible": 904,
+        "successful": 809,
+        "original_accuracy_percent": 90.4,
+        "after_attack_accuracy_percent": 9.5,
+        "attack_success_rate_percent": 89.49115044247787,
+        "mean_queries_eligible": 110.36393805309734,
+        "mean_perturbed_word_percent_successful": 19.39597131556523,
+        "summary_sha256": "c3d2e524e843356e416a0fd94c53be6de10b21285b9ff141bfe5b17f1b7823b9",
+        "metadata_sha256": "800eda680a18c249a32ebc9da3b83c1c07cfe8933ffe02de1cede4a62e9c9651"
+      }
+    },
+    "paired_initially_correct": {
+      "both_successful": 649,
+      "only_0_7_successful": 7,
+      "only_0_5_successful": 160,
+      "neither_successful": 88
+    },
+    "after_attack_accuracy_change_points": -15.3,
+    "signed_gap_to_paper_0_7_points": 13.3,
+    "signed_gap_to_paper_0_5_points": -2.0
+  }
+}

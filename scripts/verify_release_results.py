@@ -1,12 +1,16 @@
 """Reconcile the published aggregates with the report's denominators."""
 
+import argparse
 import csv
 import json
 import math
+import tempfile
+import unittest
 from pathlib import Path
 
 
-RESULTS = Path(__file__).resolve().parents[1] / "results"
+ROOT = Path(__file__).resolve().parents[1]
+RESULTS = ROOT / "results"
 
 
 def read_csv(name):
@@ -73,6 +77,27 @@ def check_data_quality():
     require(math.isclose(macro, subsets["clear"]["equal_polarity_attack_success_rate_percent"]),
             "TMDb polarity-weighted rate")
 
+    sensitivity = read_json("tmdb_source_sensitivity.json")
+    require(sensitivity["clarity_counts"] == counts, "TMDb source sensitivity populations")
+    for name, reference in (("all_agreed", tuple(subsets.values())), ("clear_only", (subsets["clear"],))):
+        cohort = sensitivity[name]
+        for field, original_field in (("rows", "passages"), ("eligible", "eligible"), ("flips", "successful")):
+            require(cohort["all_passages"]["all"][field] == sum(group[original_field] for group in reference),
+                    f"TMDb {name} {field} total")
+        require(cohort["one_passage_per_review"]["all"]["rows"] == cohort["source_review_count"],
+                f"TMDb {name} source reviews")
+        for population in ("all_passages", "one_passage_per_review"):
+            group = cohort[population]
+            total = group["all"]
+            positive, negative = group["positive"], group["negative"]
+            require(all(total[field] == positive[field] + negative[field] for field in ("rows", "eligible", "flips")),
+                    f"TMDb {name} {population} polarity totals")
+            pooled = 100 * total["flips"] / total["eligible"]
+            balanced = 50 * (positive["flips"] / positive["eligible"] + negative["flips"] / negative["eligible"])
+            require(math.isclose(group["pooled_asr_percent"], pooled) and
+                    math.isclose(group["equal_polarity_asr_percent"], balanced),
+                    f"TMDb {name} {population} rates")
+
     synthetic = quality["synthetic_blinded_rereview"]
     table = synthetic["contingency"]
     require(sum(row["count"] for row in table) == synthetic["sample_size"], "synthetic re-review population")
@@ -119,4 +144,18 @@ def main():
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--fixtures", action="store_true",
+                        help="also run the standard-library review and judge tests")
+    args = parser.parse_args()
     main()
+    if args.fixtures:
+        scratch = ROOT / "tmp"
+        scratch.mkdir(exist_ok=True)
+        tempfile.tempdir = str(scratch)
+        loader = unittest.TestLoader()
+        suite = unittest.TestSuite()
+        for pattern in ("test_type2*.py", "test_judge*.py", "test_llm_judge.py"):
+            suite.addTests(loader.discover(str(ROOT / "tests"), pattern=pattern))
+        if not unittest.TextTestRunner().run(suite).wasSuccessful():
+            raise SystemExit(1)

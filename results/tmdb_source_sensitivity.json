@@ -1,0 +1,115 @@
+{
+  "clarity_counts": {
+    "clear": 293,
+    "mixed": 84,
+    "neutral": 13,
+    "plot_only": 14,
+    "uncertain": 8
+  },
+  "review_selection": "First by ascending SHA-256 of UTF-8 text 8240:<source_id>, before eligibility filtering.",
+  "film_exclusion": "Drop every passage from one movie ID at a time. Record min/max across movies.",
+  "all_agreed": {
+    "film_count": 68,
+    "source_review_count": 281,
+    "all_passages": {
+      "all": {
+        "rows": 412,
+        "eligible": 390,
+        "flips": 322
+      },
+      "positive": {
+        "rows": 296,
+        "eligible": 280,
+        "flips": 253
+      },
+      "negative": {
+        "rows": 116,
+        "eligible": 110,
+        "flips": 69
+      },
+      "pooled_asr_percent": 82.56410256410257,
+      "equal_polarity_asr_percent": 76.54220779220779
+    },
+    "one_passage_per_review": {
+      "all": {
+        "rows": 281,
+        "eligible": 265,
+        "flips": 225
+      },
+      "positive": {
+        "rows": 202,
+        "eligible": 191,
+        "flips": 176
+      },
+      "negative": {
+        "rows": 79,
+        "eligible": 74,
+        "flips": 49
+      },
+      "pooled_asr_percent": 84.90566037735849,
+      "equal_polarity_asr_percent": 79.18140653742748
+    },
+    "leave_one_film_out_range": {
+      "pooled_asr_percent": [
+        82.10526315789474,
+        83.46456692913385
+      ],
+      "equal_polarity_asr_percent": [
+        75.87792642140468,
+        77.51423149905123
+      ]
+    }
+  },
+  "clear_only": {
+    "film_count": 61,
+    "source_review_count": 219,
+    "all_passages": {
+      "all": {
+        "rows": 293,
+        "eligible": 287,
+        "flips": 234
+      },
+      "positive": {
+        "rows": 236,
+        "eligible": 232,
+        "flips": 208
+      },
+      "negative": {
+        "rows": 57,
+        "eligible": 55,
+        "flips": 26
+      },
+      "pooled_asr_percent": 81.53310104529616,
+      "equal_polarity_asr_percent": 68.4639498432602
+    },
+    "one_passage_per_review": {
+      "all": {
+        "rows": 219,
+        "eligible": 215,
+        "flips": 177
+      },
+      "positive": {
+        "rows": 177,
+        "eligible": 174,
+        "flips": 158
+      },
+      "negative": {
+        "rows": 42,
+        "eligible": 41,
+        "flips": 19
+      },
+      "pooled_asr_percent": 82.32558139534883,
+      "equal_polarity_asr_percent": 68.57303055789178
+    },
+    "leave_one_film_out_range": {
+      "pooled_asr_percent": [
+        80.93525179856115,
+        82.62411347517731
+      ],
+      "equal_polarity_asr_percent": [
+        67.46909564085882,
+        69.82758620689656
+      ]
+    }
+  }
+}
